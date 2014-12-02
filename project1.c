@@ -101,7 +101,7 @@ void init_encoder(encoder_t *e, int c_enc, int caps) {
 }
 
 void init_storage(storage_t *s){
-    memset(e, 0, sizeof(storage_t));
+    memset(s, 0, sizeof(storage_t));
     init_buffer( &s->buf, -1);
 }
 
@@ -124,12 +124,12 @@ typedef struct _sim_state_t {
 
 //-----------------------------------------------------
 enum event {
-    TOP_ARRIVAL;
-    BOTTOM_ARRIVAL;
-    QUEUE_IN_ENCODE;
-    ENCODE_FRAME;
-    QUEUE_IN_STORAGE;
-    STORED;
+    TOP_ARRIVAL,
+    BOTTOM_ARRIVAL,
+    QUEUE_IN_ENCODE,
+    ENCODE_FRAME,
+    QUEUE_IN_STORAGE,
+    STORED
 };
 
 typedef struct _event_element_t {
@@ -183,9 +183,17 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
     event_element_t *event = 0;
     while(1) {
         event = get_next_event(q);
-        if ( event == 0 ) 
+        if ( event == 0 ) { 
+            printf("empty event queue");
             break;
-        if ( 
+        }
+        if ( sim_state->sim_stop_time_in_second < 
+                sim_state->sime_time_in_second ) 
+        {
+           printf("simluation timeout");
+           break; 
+        }
+        //forth time and put next event
     }
     printf("simulation end");
 }
