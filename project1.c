@@ -3,10 +3,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "lcgrand.h"
 
-// function headers
-float expon(float mean);
+
+//-----------------------------------------------------
+/* Exponential variate generation function. */
+float expon(float mean) {
+    /* Return an exponential random variate with mean "mean". */
+    return -mean * log(lcgrand(1));
+}
 //-----------------------------------------------------
 #define TOP_FIELD 1
 #define BOTTOM_FIELD 2
@@ -32,7 +38,7 @@ typedef struct _field_buf_t {
 
 // initialze buffer
 void init_buffer( field_buf_t *buf, int capacity ) {
-    memset(buf,0, sizeof(fiedl_buf_t));
+    memset(buf,0, sizeof(field_buf_t));
     buf->capacity = capacity;
 }
 
@@ -123,17 +129,17 @@ typedef struct _sim_state_t {
 } sim_state_t;
 
 //-----------------------------------------------------
-enum event {
+typedef enum event_t {
     TOP_ARRIVAL,
     BOTTOM_ARRIVAL,
     QUEUE_IN_ENCODE,
     ENCODE_FRAME,
     QUEUE_IN_STORAGE,
     STORED
-};
+}event_t ;
 
 typedef struct _event_element_t {
-    event e; // event e
+    event_t e; // event e
     float ttime; // trigger time
     struct _event_element_t *next;
 } event_element_t ;
@@ -150,7 +156,7 @@ void init_event_queue(evnet_queue_t *q) {
     memset( q, 0, sizeof(event_queue_t));
 }
 // insert event
-void insert_event(event_queue_t *q, event e, float ttime) {
+void insert_event(event_queue_t *q, event_t e, float ttime) {
     event_element_t *tmp = 0;
     event_element_t *prev = q->last;
     q->total_events++;
@@ -188,7 +194,7 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
             break;
         }
         if ( sim_state->sim_stop_time_in_second < 
-                sim_state->sime_time_in_second ) 
+                sim_state->sim_time_in_second ) 
         {
            printf("simluation timeout");
            break; 
@@ -208,16 +214,12 @@ storage_t   g_storage;
 //-----------------------------------------------------
 //method definitions
 
-/* Exponential variate generation function. */
-float expon(float mean) {
-    /* Return an exponential random variate with mean "mean". */
-    return -mean * log(lcgrand(1));
-}
 //-----------------------------------------------------
 // simulation initialization
 int sim_initial(){
-    memset( &sim_state, 0, sizeof( sim_state ));
+    memset( &g_sim_state, 0, sizeof( sim_state ));
     init_encoder( &g_encoder, 0, 0 );
+    init_storage( &g_storage, 0, 0 );
 }
 
 //-----------------------------------------------------
