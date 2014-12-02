@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "lcgrand.h"
 
 // function headers
 float expon(float mean);
@@ -31,7 +32,7 @@ typedef struct _field_buf_t {
 
 // initialze buffer
 void init_buffer( field_buf_t *buf, int capacity ) {
-    memset(buf,0 sizeof(fiedl_buf_t));
+    memset(buf,0, sizeof(fiedl_buf_t));
     buf->capacity = capacity;
 }
 
@@ -208,7 +209,7 @@ float expon(float mean) {
 // simulation initialization
 int sim_initial(){
     memset( &sim_state, 0, sizeof( sim_state ));
-    init_buffer( &g_encoder.limited_buf, );
+    init_encoder( &g_encoder, 0, 0 );
 }
 
 //-----------------------------------------------------
