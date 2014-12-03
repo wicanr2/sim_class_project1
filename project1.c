@@ -226,6 +226,11 @@ void insert_event(event_queue_t *q, event_t e, float ttime) {
     // event insertion is ordered by trigger time
     event_element_t *p = q->head;
     event_element_t *prev = p;
+    if ( p == 0 ) {
+        q->head = tmp;
+        q->last = tmp;
+        return ;
+    }
     while ( p != 0 ) { 
         if ( p->ttime > tmp->ttime ) {
             break;
