@@ -1,3 +1,12 @@
+/*
+ *
+ * Tandem queue simulation 
+ * Author: Chun-Yu Wang
+ * Email : ｗｉｃａｎｒ２@gmail.com; ｑ３８００１０１８@mail.ncku.edu.tw
+ * Description : 
+ *      This simulation is a class project on NCKU simulation.
+ */
+
 //tandem queue
 //encoder and storage
 #include <stdio.h>
@@ -106,38 +115,62 @@ void init_encoder(encoder_t *e, int c_enc, int caps) {
     init_buffer( &e->buf, caps);
 }
 
-void init_storage(storage_t *s){
+void init_storage(storage_t *s, int c_storage, int caps){
     memset(s, 0, sizeof(storage_t));
-    init_buffer( &s->buf, -1);
+    init_buffer( &s->buf, caps);
+    s->c_storage = c_storage;
 }
 
 // the structure of simulation states
 // it defines the simulation state variables
 typedef struct _sim_state_t {
-    int frames_not_stored; // the number of frame discarded
+    int last_frames; // the number of frame discarded
     int total_frames; // total frame generation during simulation
-    int sim_time_in_second; // the current simulation time in second
-    int sim_stop_time_in_second; // the stop time in second
+    int current_time; // the current simulation time in second
+    int stop_time; // the stop time in second
+    int encoder_capacity_beta; // beta field
+    int storage_capacity;
+
     // the inter-arrival time mean of a field on exponential distribution
     // = 1/59.94 or 1/50
     float arrival_mean; 
+
     // the field complexity mean on exponential distribution
     // = 262.5 or 312.5
     float field_complexity_mean;
-    int encoder_capacity_beta; // beta field
-    int storage_capacity;
+    
+    float alpha; // alpha = h1 + h2
+
+    encoder_t encoder;
+    storage_t storage;
 } sim_state_t;
 
 //-----------------------------------------------------
 typedef enum event_t {
     TOP_ARRIVAL,
     BOTTOM_ARRIVAL,
-    QUEUE_IN_ENCODE,
     ENCODE_FRAME,
-    QUEUE_IN_STORAGE,
-    STORED
+    STORE_FRAME
 }event_t ;
-
+/*
+ *  Initial 
+ *       |
+ *  TOP_ARRIVAL --> BOTTOM_ARRIVAL --> ENCODE_FRAME --> STORED
+ *   ^   |               |                               |
+ *   |   |               |                               |
+ *   |   |               |                               |
+ *   |   -----------------                               |
+ *   |           |                                       |
+ *   |         DROP                                      |
+ *   |           |                                       |
+ *   <---------------------------------------------------#                                                    
+ *
+ *      schedule next event
+ *
+ *
+ * */
+//-----------------------------------------------------
+// the data structure of event
 typedef struct _event_element_t {
     event_t e; // event e
     float ttime; // trigger time
@@ -158,7 +191,6 @@ void init_event_queue(evnet_queue_t *q) {
 // insert event
 void insert_event(event_queue_t *q, event_t e, float ttime) {
     event_element_t *tmp = 0;
-    event_element_t *prev = q->last;
     q->total_events++;
     q->num++;
     tmp = calloc(1, sizeof(event_queue_t) );
@@ -166,12 +198,25 @@ void insert_event(event_queue_t *q, event_t e, float ttime) {
     tmp->ttime = ttime;
     tmp->next = 0;
 
-    if ( prev != 0 ) {
+    // event insertion is ordered by trigger time
+    event_element_t *p = q->head;
+    event_element_t *prev = p;
+    while ( p != 0 ) { 
+        if ( p->ttime > tmp->ttime ) {
+            break;
+        }
+        prev = p ;
+        p = p->next;
+    }
+    if ( prev == q->head ) {
+        q->head = tmp;
+        tmp->next = prev;
+    } else if ( prev == q->last ) {
         prev->next = tmp;
         q->last = tmp;
     } else {
-        q->head = tmp;
-        q->last = tmp;
+        tmp->next = p;
+        prev->next = tmp;
     }
 }
 // get next event
@@ -185,6 +230,11 @@ event_element_t *get_next_event( event_queue_t *q ) {
     return tmp;
 }
 
+//-----------------------------------------------------
+// event method declaration
+int schedule_new_frames(sim_state_t *sim_state, event_queue_t *q);
+//-----------------------------------------------------
+
 void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
     event_element_t *event = 0;
     while(1) {
@@ -193,39 +243,82 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
             printf("empty event queue");
             break;
         }
-        if ( sim_state->sim_stop_time_in_second < 
-                sim_state->sim_time_in_second ) 
+        if ( sim_state->stop_time < 
+                sim_state->current_time ) 
         {
            printf("simluation timeout");
            break; 
         }
+        
+        switch ( event.e ) {
+            case TOP_ARRIVAL:
+                break;
+            case BOTTOM_ARRIVAL:
+                break;
+            case ENCODE_FRAME:
+                break;
+            case STORE_FRAME:
+                break;
+            default:
+                printf("unknow event");
+                return;
+        }
         //forth time and put next event
+        schedule_new_frames(sim_state, q);
     }
     printf("simulation end");
 }
 
-//-----------------------------------------------------
-//global variables 
-sim_state_t g_sim_state;
-encoder_t   g_encoder;
-storage_t   g_storage;
 
 
 //-----------------------------------------------------
-//method definitions
-
+//event method 
+int schedule_new_frames(sim_state_t *sim_state, event_queue_t *q);
+    float packet_time = expon(sim_state->arrival_mean);
+    float ttime = packet_time + sim_state->current_time;
+    insert_event( q, TOP_ARRIVAL, ttime );
+    insert_event( q, BOTTOM_ARRIVAL, ttime );
+    return 0;
+}
 //-----------------------------------------------------
 // simulation initialization
-int sim_initial(){
-    memset( &g_sim_state, 0, sizeof( sim_state ));
-    init_encoder( &g_encoder, 0, 0 );
-    init_storage( &g_storage, 0, 0 );
+// sim_initial() --> sim_initial2() 
+
+int sim_initial(
+        sim_state_t *sim_state, event_queue_t *q, 
+        int enc_caps, int storage_caps, int c_enc, int c_storage,
+        float arrival_mean, float field_comp_mean )
+{
+    memset( sim_state, 0, sizeof( sim_state ));
+    init_event_queue( q ); 
+    sim_state->encoder_capacity_beta = enc_caps;
+    sim_state->storage_capacity = storage_caps;
+    sim_state->arrival_mean = arrival_mean ;
+    sim_state->field_complexity_mean = field_comp_mean ;
+    init_encoder( &sim->encoder, c_enc, sim_state->encoder_capacity_beta );
+    init_storage( &sim->storage, c_storage , sim_state->storage_capacity );
+    schedule_next_frame( sim_state, q );
+    return 0;
 }
+void do_simulation( sim_state_t *sim_state, event_queue_t *q ) {
+    event_scheduler( sim_state, q ) ; 
+}
+
+void report( sim_state_t *sim_state, event_queue_t *q ) {
+}
+
+//-----------------------------------------------------
+//global variables 
+sim_state_t     g_sim_state;
+event_queue_t   g_event_queue;
 
 //-----------------------------------------------------
 // 
 int main(int argc, char* argv) {
     printf("Tandem Queue Simulation");
+    sim_initial(&g_sim_state, &g_event_queue, 20, -1, 15800, 1600, 1/59.94, 262.5);
+    do_simulation( &g_sim_state, &g_event_queue );
+    report( &g_sim_state, &g_event_queue );
     return 0;
 }
 //-----------------------------------------------------
