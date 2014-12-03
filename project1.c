@@ -185,7 +185,7 @@ typedef struct _event_queue_t {
 } event_queue_t;
 
 // initial event queue
-void init_event_queue(evnet_queue_t *q) {
+void init_event_queue(event_queue_t *q) {
     memset( q, 0, sizeof(event_queue_t));
 }
 // insert event
@@ -250,7 +250,7 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
            break; 
         }
         
-        switch ( event.e ) {
+        switch ( event->e ) {
             case TOP_ARRIVAL:
                 break;
             case BOTTOM_ARRIVAL:
@@ -273,7 +273,7 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
 
 //-----------------------------------------------------
 //event method 
-int schedule_new_frames(sim_state_t *sim_state, event_queue_t *q);
+int schedule_new_frames(sim_state_t *sim_state, event_queue_t *q) {
     float packet_time = expon(sim_state->arrival_mean);
     float ttime = packet_time + sim_state->current_time;
     insert_event( q, TOP_ARRIVAL, ttime );
