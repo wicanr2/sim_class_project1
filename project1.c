@@ -398,7 +398,7 @@ int schedule_store(sim_state_t *sim_state, event_queue_t *q) {
 int sim_initial(
         sim_state_t *sim_state, event_queue_t *q, 
         int enc_caps, int storage_caps, int c_enc, int c_storage,
-        float arrival_mean, float field_comp_mean, float stop_time )
+        float arrival_mean, float field_comp_mean, float stop_time, float alpha )
 {
     memset( sim_state, 0, sizeof( sim_state ));
     init_event_queue( q ); 
@@ -407,6 +407,7 @@ int sim_initial(
     sim_state->arrival_mean = arrival_mean ;
     sim_state->field_complexity_mean = field_comp_mean ;
     sim_state->stop_time = stop_time;
+    sim_state->alpha = alpha;
     init_encoder( &sim_state->encoder, c_enc, sim_state->encoder_capacity_beta );
     init_storage( &sim_state->storage, c_storage , sim_state->storage_capacity );
     // the first field will be top field, arrives at time 0
@@ -456,7 +457,7 @@ int main(int argc, char* argv) {
     printf("Tandem Queue Simulation");
     sim_initial(&g_sim_state, &g_event_queue, 
             20, -1, 15800, 1600, 1/59.94, 262.5,
-            8*3600
+            8*3600, 0.1
             );
     param_report( &g_sim_state );
     do_simulation( &g_sim_state, &g_event_queue );
