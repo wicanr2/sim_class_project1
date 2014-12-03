@@ -239,8 +239,10 @@ void insert_event(event_queue_t *q, event_t e, float ttime) {
         p = p->next;
     }
     if ( prev == q->head ) {
-        q->head = tmp;
-        tmp->next = prev;
+        prev->next = tmp;
+        if ( prev == q->last ) {
+            q->last = tmp;
+        } 
     } else if ( prev == q->last ) {
         prev->next = tmp;
         q->last = tmp;
