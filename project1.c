@@ -295,8 +295,8 @@ int sim_initial(
     sim_state->storage_capacity = storage_caps;
     sim_state->arrival_mean = arrival_mean ;
     sim_state->field_complexity_mean = field_comp_mean ;
-    init_encoder( &sim->encoder, c_enc, sim_state->encoder_capacity_beta );
-    init_storage( &sim->storage, c_storage , sim_state->storage_capacity );
+    init_encoder( &sim_state->encoder, c_enc, sim_state->encoder_capacity_beta );
+    init_storage( &sim_state->storage, c_storage , sim_state->storage_capacity );
     schedule_next_frame( sim_state, q );
     return 0;
 }
