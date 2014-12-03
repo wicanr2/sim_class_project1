@@ -338,8 +338,8 @@ int schedule_new_frames(sim_state_t *sim_state, event_queue_t *q) {
 
 // schedule_encode
 int schedule_encode(sim_state_t *sim_state, event_queue_t *q) {
-    video_field_t *top = get_next_field(&sim_state->encode.buf); 
-    video_field_t *bottom = get_next_field(&sim_state->encode.buf); 
+    video_field_t *top = get_next_field(&sim_state->encoder.buf); 
+    video_field_t *bottom = get_next_field(&sim_state->encoder.buf); 
     if ( top->type != TOP_FIELD ) {
         printf("type error !!!, top->type != TOP_FIELD");
         exit(1);
@@ -350,7 +350,7 @@ int schedule_encode(sim_state_t *sim_state, event_queue_t *q) {
     }
     // frame_size = h1 + h2
     float frame_size = top->fobs + bottom->fobs;
-    float encode_size = frame_size * sim_stat->alpha;
+    float encode_size = frame_size * sim_state->alpha;
     
     float process_time = frame_size / sim_state->encoder.c_enc;
     float ttime = 0.0f;
@@ -360,7 +360,7 @@ int schedule_encode(sim_state_t *sim_state, event_queue_t *q) {
         ttime = process_time + sim_state->last_encode_finished_time;
     }
     sim_state->last_encode_finished_time = ttime;
-    insert_event( q, ENCODE_FRAME , ttime );
+    insert_event( q, ENCODE, ttime );
     insert_field( &sim_state->storage.buf, 
             ENCODED_FIELD , encode_size );
     free(top); free(bottom);
@@ -377,7 +377,7 @@ int schedule_store(sim_state_t *sim_state, event_queue_t *q) {
     }
 
     // frame_size = a(h1 + h2)
-    float frame_size = encode_field->fobs 
+    float frame_size = encode_field->fobs;
     
     float process_time = frame_size / sim_state->storage.c_storage;
     float ttime = 0.0f;
@@ -431,7 +431,7 @@ void param_report ( sim_state_t *sim_state ) {
 
     printf("storage:\n");
     printf("\tc_storage(storage processing rate) = %d\n",
-            sim_state->storage,c_storeag);
+            sim_state->storage.c_storage);
     printf("\tstorage buffer length  = %d\n", 
             sim_state->storage_capacity );
 
