@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include <math.h>
 #include "lcgrand.h"
 
@@ -55,7 +56,7 @@ void init_buffer( field_buf_t *buf, int capacity ) {
 video_field_t* get_next_field( field_buf_t *buf ) {
     video_field_t* tmp = buf->head;
     if ( buf->head == 0 ) {
-	return 0;
+	    return 0;
     }
     buf->head = buf->head->next;
     if ( buf->head == 0 ) {
@@ -65,28 +66,44 @@ video_field_t* get_next_field( field_buf_t *buf ) {
     return tmp;
 }
 
+int print_field_buf( field_buf_t *buf );
 // insert field
 int insert_field( field_buf_t *buf, int type, float fobs ) {
     // the capacity is equal to zeor or negative, it is a infinite/unlimited buffer in simulation.
+    //printf("insert_field\n");
     if ( buf->capacity > 0 && buf->num > buf->capacity + 1 ) {
         return -1;
     }
     buf->num++;
-    video_field_t *prev = buf->last;
     video_field_t *tmp = calloc(1, sizeof(video_field_t));
     tmp->type = type;
     tmp->fobs = fobs;
     tmp->next = 0;
-    tmp->prev = prev;
-    if ( prev != 0 ) {
-        prev->next = tmp;
-        buf->last = tmp;
-    } else {
+    tmp->prev = buf->last;
+    if ( buf->last == 0 ) {
         buf->head = tmp;
         buf->last = tmp;
+        //print_field_buf(buf);
+        return 0;
     }
+    buf->last->next = tmp;
+    buf->last = tmp;
+    //print_field_buf(buf);
     return 0;    
 }
+
+int print_field_buf( field_buf_t *buf ) {
+    video_field_t *tmp = buf->head;
+    printf("----------field buffer-----------------\n");
+    while ( tmp != 0 ) {
+        printf("field->type = %d, field->fobs = %f\n", tmp->type, tmp->fobs );
+        tmp = tmp->next;
+    }
+    printf("--------------------------------------\n");
+    return 0;
+}
+
+
 
 // drop last frame
 // if there is a Top_Field on the buffer, but the Bottom_Field can not fill in, the drop the last Top_Field in the buffer;
@@ -138,11 +155,11 @@ void init_storage(storage_t *s, int c_storage, int caps){
 // the structure of simulation states
 // it defines the simulation state variables
 typedef struct _sim_state_t {
-    int last_frames; // the number of frame discarded
+    int lost_frames; // the number of frame discarded
     int total_frames; // total frame generation during simulation
     int encoder_capacity_beta; // beta field
     int storage_capacity;
-
+    float storage_busy_time;
     // record the finished time of frame in the encoder 
     float last_encode_finished_time; 
 
@@ -223,8 +240,10 @@ typedef struct _event_queue_t {
 void init_event_queue(event_queue_t *q) {
     memset( q, 0, sizeof(event_queue_t));
 }
+int print_event_queue( event_queue_t *q );
 // insert event
 void insert_event(event_queue_t *q, event_t e, float ttime) {
+    //printf("insert event %d, ttime %f\n", e, ttime );
     event_element_t *tmp = 0;
     q->total_events++;
     q->num++;
@@ -239,6 +258,7 @@ void insert_event(event_queue_t *q, event_t e, float ttime) {
     if ( p == 0 ) {
         q->head = tmp;
         q->last = tmp;
+        //print_event_queue(q);
         return ;
     }
     while ( p != 0 ) { 
@@ -248,18 +268,21 @@ void insert_event(event_queue_t *q, event_t e, float ttime) {
         prev = p ;
         p = p->next;
     }
-    if ( prev == q->head ) {
-        prev->next = tmp;
-        if ( prev == q->last ) {
-            q->last = tmp;
-        } 
-    } else if ( prev == q->last ) {
+    //printf("p = %d, prev =%d, head =%d, last =%d\n", p, prev, q->head, q->last);
+    if ( p == 0 ) {
         prev->next = tmp;
         q->last = tmp;
-    } else {
+        //print_event_queue(q);
+        return;
+    }
+    if ( p == q->head ) {
+        tmp->next = p;
+        q->head = tmp;
+    }  else {
         tmp->next = p;
         prev->next = tmp;
     }
+    //print_event_queue(q);
 }
 // get next event
 event_element_t *get_next_event( event_queue_t *q ) {
@@ -270,6 +293,16 @@ event_element_t *get_next_event( event_queue_t *q ) {
     }
     q->num--;
     return tmp;
+}
+int print_event_queue( event_queue_t *q ) {
+    event_element_t *tmp = q->head;
+    printf("----------event queue-----------------\n");
+    while ( tmp != 0 ) {
+        printf("%d event->e = %d, event->ttime = %f\n", tmp, tmp->e, tmp->ttime );
+        tmp = tmp->next;
+    }
+    printf("--------------------------------------\n");
+    return 0;
 }
 
 //-----------------------------------------------------
@@ -282,6 +315,7 @@ int schedule_store(sim_state_t *sim_state, event_queue_t *q);
 void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
     event_element_t *event = 0;
     while(1) {
+        //print_event_queue(q);
         event = get_next_event(q);
         if ( event == 0 ) { 
             printf("empty event queue");
@@ -297,13 +331,17 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
         sim_state->current_time = event->ttime;
         float fobs = 0.0f;
         int r = 0;
+        //printf("event->e = %d\n", event->e );
+        //printf("event->ttime = %f\n", event->ttime );
         switch ( event->e ) {
-	    case NEW_FRAME:
-		insert_event(q, TOP_ARRIVAL, event->ttime );
-		insert_event(q, BOTTOM_ARRIVAL, event->ttime );
-		schedule_new_frame(sim_state, q);
-		break;
+            case NEW_FRAME:
+                //printf("NEW_FRAME\n");
+                insert_event(q, TOP_ARRIVAL, event->ttime );
+                insert_event(q, BOTTOM_ARRIVAL, event->ttime );
+                schedule_new_frame(sim_state, q);
+                break;
             case TOP_ARRIVAL:
+                //printf("TOP_ARRIVAL\n");
                 fobs = expon(sim_state->field_complexity_mean);
                 r = insert_field ( &sim_state->encoder.buf,
                         TOP_FIELD, fobs);
@@ -313,17 +351,18 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
                     event_element_t *next_event = 
                         get_next_event(q);;
                     free(next_event);
-                    sim_state->last_frames+=2;
+                    sim_state->lost_frames+=2;
                 }
                 break;
             case BOTTOM_ARRIVAL:
+                //printf("BOTTOM_ARRIVAL\n");
                 fobs = expon(sim_state->field_complexity_mean);
                 r = insert_field ( &sim_state->encoder.buf,
                         BOTTOM_FIELD, fobs);
                 if ( r < 0 ) {
                     // remove last top field from buffer 
                     drop_last( &sim_state->encoder.buf );
-                    sim_state->last_frames+=2;
+                    sim_state->lost_frames+=2;
                 } else {
                     schedule_encode( sim_state, q );
                 }
@@ -358,14 +397,17 @@ int schedule_new_frame(sim_state_t *sim_state, event_queue_t *q) {
 
 // schedule_encode
 int schedule_encode(sim_state_t *sim_state, event_queue_t *q) {
+    //printf("schedule_encode\n");
     video_field_t *top = get_next_field(&sim_state->encoder.buf); 
     video_field_t *bottom = get_next_field(&sim_state->encoder.buf); 
+    
     if ( top->type != TOP_FIELD ) {
-        printf("type error !!!, top->type != TOP_FIELD");
+        printf("type error !!!, top->type != TOP_FIELD\n");
+        printf("top->type = %d\n", top->type );
         exit(1);
     }
     if ( bottom->type != BOTTOM_FIELD ) {
-        printf("type error !!!, bottom->type != BOTTOM_FIELD");
+        printf("type error !!!, bottom->type != BOTTOM_FIELD\n");
         exit(1);
     }
     // frame_size = h1 + h2
@@ -407,6 +449,7 @@ int schedule_store(sim_state_t *sim_state, event_queue_t *q) {
         ttime = process_time + sim_state->last_storage_finished_time ;
     }
     sim_state->last_storage_finished_time = ttime;
+    sim_state->storage_busy_time += process_time;
     insert_event( q, STORE, ttime );
     free(encode_field); 
     return 0;
@@ -463,6 +506,10 @@ void param_report ( sim_state_t *sim_state ) {
     printf("\talpha = %f\n", sim_state->alpha );
 }
 void report( sim_state_t *sim_state, event_queue_t *q ) {
+    printf("total frames : %d\n", sim_state->total_frames );    
+    printf("lost frames : %d\n", sim_state->lost_frames );    
+    printf("current_time : %f\n", sim_state->current_time );    
+    printf("storage_busy_time : %f\n", sim_state->storage_busy_time );    
 }
 
 //-----------------------------------------------------
@@ -473,13 +520,15 @@ event_queue_t   g_event_queue;
 //-----------------------------------------------------
 // 
 int main(int argc, char* argv) {
-    printf("Tandem Queue Simulation");
+    printf("Tandem Queue Simulation\n");
     sim_initial(&g_sim_state, &g_event_queue, 
             20, -1, 15800, 1600, 1/59.94, 262.5,
             8*3600, 0.1
             );
     param_report( &g_sim_state );
+    printf("do simulation.......\n");
     do_simulation( &g_sim_state, &g_event_queue );
+    printf("simulation finished\n");
     report( &g_sim_state, &g_event_queue );
     return 0;
 }
