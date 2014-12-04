@@ -54,6 +54,9 @@ void init_buffer( field_buf_t *buf, int capacity ) {
 // get next event
 video_field_t* get_next_field( field_buf_t *buf ) {
     video_field_t* tmp = buf->head;
+    if ( buf->head == 0 ) {
+	return 0;
+    }
     buf->head = buf->head->next;
     if ( buf->head == 0 ) {
         buf->last = 0;
@@ -164,23 +167,30 @@ typedef struct _sim_state_t {
 
 //-----------------------------------------------------
 typedef enum event_t {
+    NEW_FRAME,
     TOP_ARRIVAL,
     BOTTOM_ARRIVAL,
     ENCODE,
     STORE
 }event_t ;
 /*
- *  Initial 
+ *    Initial 
  *       |
- *  TOP_ARRIVAL --> BOTTOM_ARRIVAL --> ENCODE_FRAME --> STORED
- *   ^   |               |                               |
- *   |   |               |                               |
- *   |   |               |                               |
- *   |   -----------------                               |
- *   |           |                                       |
- *   |         DROP                                      |
- *   |           |                                       |
- *   <---------------------------------------------------#
+ *       |
+ *       <----------#
+ *       |          |
+ *    NEW_FRAME-----#
+ *       |
+ *       |
+ *  TOP_ARRIVAL --> BOTTOM_ARRIVAL --> ENCODE--> STORE
+ *   ^   |               |                         |
+ *   |   |               |                         |
+ *   |   |               |                         |
+ *   |   -----------------                         |
+ *   |           |                                 |
+ *   |         DROP                                |
+ *   |           |                                 |
+ *   <---------------------------------------------#
  *
  *      schedule next event
  *
@@ -264,7 +274,7 @@ event_element_t *get_next_event( event_queue_t *q ) {
 
 //-----------------------------------------------------
 // event method declaration
-int schedule_new_frames(sim_state_t *sim_state, event_queue_t *q);
+int schedule_new_frame(sim_state_t *sim_state, event_queue_t *q);
 int schedule_encode(sim_state_t *sim_state, event_queue_t *q);
 int schedule_store(sim_state_t *sim_state, event_queue_t *q);
 //-----------------------------------------------------
@@ -288,6 +298,11 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
         float fobs = 0.0f;
         int r = 0;
         switch ( event->e ) {
+	    case NEW_FRAME:
+		insert_event(q, TOP_ARRIVAL, event->ttime );
+		insert_event(q, BOTTOM_ARRIVAL, event->ttime );
+		schedule_new_frame(sim_state, q);
+		break;
             case TOP_ARRIVAL:
                 fobs = expon(sim_state->field_complexity_mean);
                 r = insert_field ( &sim_state->encoder.buf,
@@ -326,7 +341,6 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
         }
         free(event);
         //forth time and put next event
-        schedule_new_frames(sim_state, q);
     }
     printf("simulation end");
 }
@@ -335,11 +349,10 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
 
 //-----------------------------------------------------
 //event method 
-int schedule_new_frames(sim_state_t *sim_state, event_queue_t *q) {
+int schedule_new_frame(sim_state_t *sim_state, event_queue_t *q) {
     float packet_time = expon(sim_state->arrival_mean);
     float ttime = packet_time + sim_state->current_time;
-    insert_event( q, TOP_ARRIVAL, ttime );
-    insert_event( q, BOTTOM_ARRIVAL, ttime );
+    insert_event( q, NEW_FRAME, ttime );
     return 0;
 }
 
@@ -418,8 +431,7 @@ int sim_initial(
     init_encoder( &sim_state->encoder, c_enc, sim_state->encoder_capacity_beta );
     init_storage( &sim_state->storage, c_storage , sim_state->storage_capacity );
     // the first field will be top field, arrives at time 0
-    insert_event( q, TOP_ARRIVAL, 0.0f );
-    insert_event( q, BOTTOM_ARRIVAL, 0.0f);
+    insert_event( q, NEW_FRAME , 0.0f);
     return 0;
 }
 void do_simulation( sim_state_t *sim_state, event_queue_t *q ) {
