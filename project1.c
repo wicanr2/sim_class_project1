@@ -68,7 +68,7 @@ video_field_t* get_next_field( field_buf_t *buf ) {
 
 int print_field_buf( field_buf_t *buf );
 // insert field
-int insert_field( field_buf_t *buf, int type, float fobs ) {
+int insert_field( sim_state_t *sim_state, field_buf_t *buf, int type, float fobs ) {
     // the capacity is equal to zeor or negative, it is a infinite/unlimited buffer in simulation.
     //printf("insert_field\n");
     if ( buf->capacity > 0 && buf->num > buf->capacity + 1 ) {
@@ -89,6 +89,13 @@ int insert_field( field_buf_t *buf, int type, float fobs ) {
     buf->last->next = tmp;
     buf->last = tmp;
     //print_field_buf(buf);
+    if ( type == TOP_FIELD ) {
+       sim_state->last_top = tmp; 
+    } else if ( type == BOTTOM_FIELD ) {
+       sim_state->last_bottom = tmp; 
+    } else if ( type == ENCODED_FIELD ) {
+       sim_state->last_encoded = tmp;
+    }
     return 0;    
 }
 
@@ -159,6 +166,11 @@ typedef struct _sim_state_t {
     int total_frames; // total frame generation during simulation
     int encoder_capacity_beta; // beta field
     int storage_capacity;
+    
+    video_field_t *last_top;
+    video_field_t *last_bottom;
+    video_field_t *last_encoded;
+
     float storage_busy_time;
     // record the finished time of frame in the encoder 
     float last_encode_finished_time; 
@@ -188,7 +200,8 @@ typedef enum event_t {
     TOP_ARRIVAL,
     BOTTOM_ARRIVAL,
     ENCODE,
-    STORE
+    STORE,
+    OUT
 }event_t ;
 /*
  *    Initial 
@@ -199,15 +212,15 @@ typedef enum event_t {
  *    NEW_FRAME-----#
  *       |
  *       |
- *  TOP_ARRIVAL --> BOTTOM_ARRIVAL --> ENCODE--> STORE
- *   ^   |               |                         |
- *   |   |               |                         |
- *   |   |               |                         |
- *   |   -----------------                         |
- *   |           |                                 |
- *   |         DROP                                |
- *   |           |                                 |
- *   <---------------------------------------------#
+ *  TOP_ARRIVAL --> BOTTOM_ARRIVAL --> ENCODE--> STORE --> OUT
+ *   ^   |               |                                  |
+ *   |   |               |                                  |
+ *   |   |               |                                  |
+ *   |   -----------------                                  |
+ *   |           |                                          |
+ *   |         DROP                                         |
+ *   |           |                                          |
+ *   <------------------------------------------------------#
  *
  *      schedule next event
  *
@@ -310,6 +323,7 @@ int print_event_queue( event_queue_t *q ) {
 int schedule_new_frame(sim_state_t *sim_state, event_queue_t *q);
 int schedule_encode(sim_state_t *sim_state, event_queue_t *q);
 int schedule_store(sim_state_t *sim_state, event_queue_t *q);
+int schedule_out(sim_state_t *sim_state, event_queue_t *q);
 //-----------------------------------------------------
 
 void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
@@ -343,8 +357,7 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
             case TOP_ARRIVAL:
                 //printf("TOP_ARRIVAL\n");
                 fobs = expon(sim_state->field_complexity_mean);
-                r = insert_field ( &sim_state->encoder.buf,
-                        TOP_FIELD, fobs);
+                r = insert_field ( sim_state, &sim_state->encoder.buf, TOP_FIELD, fobs);
                 sim_state->total_frames+=2;
                 if ( r < 0 ) {
                     // discard bottom arrival event
@@ -357,8 +370,7 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
             case BOTTOM_ARRIVAL:
                 //printf("BOTTOM_ARRIVAL\n");
                 fobs = expon(sim_state->field_complexity_mean);
-                r = insert_field ( &sim_state->encoder.buf,
-                        BOTTOM_FIELD, fobs);
+                r = insert_field ( sim_state, &sim_state->encoder.buf, BOTTOM_FIELD, fobs);
                 if ( r < 0 ) {
                     // remove last top field from buffer 
                     drop_last( &sim_state->encoder.buf );
@@ -367,12 +379,13 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
                     schedule_encode( sim_state, q );
                 }
                 break;
-
             case ENCODE:
                 schedule_store( sim_state, q );
                 break;
             case STORE:
-                //TODO drop field
+                schedule_out( sim_state, q);
+                break;
+            case OUT:
                 break;
             default:
                 printf("unknow event");
@@ -398,6 +411,37 @@ int schedule_new_frame(sim_state_t *sim_state, event_queue_t *q) {
 // schedule_encode
 int schedule_encode(sim_state_t *sim_state, event_queue_t *q) {
     //printf("schedule_encode\n");
+   
+    //schedule encode time
+    if ( sim_state->last_encode_finished_time <= 0.0 ) {
+        insert_event( q, ENCODE, sim_state->current_time );
+    } else {
+        insert_event( q, ENCODE, sim_state->last_encode_finished_time );
+    }
+    //predict the encoded finished time, and update the last_encoded_finished_time
+    video_field_t *top = sim_state->last_top; 
+    video_field_t *bottom = sim_state->last_bottom; 
+    if ( top == 0 || bottom == 0 ) {
+        printf("error!!! last_top == 0 || last_bottom == 0\n");
+        exit(1);
+    }
+    float frame_size = top->fobs + bottom->fobs;
+    float encode_size = frame_size * sim_state->alpha;
+    float process_time = frame_size / sim_state->encoder.c_enc;
+    float ttime = 0.0f;
+    if ( sim_state->last_encode_finished_time <= 0.0 ) {
+        ttime = process_time + sim_state->current_time;
+    } else {
+        ttime = process_time + sim_state->last_encode_finished_time;
+    }
+    sim_state->last_encode_finished_time = ttime;
+    return 0;
+}
+
+// schedule_store
+int schedule_store(sim_state_t *sim_state, event_queue_t *q) {
+    
+    // process encoding
     video_field_t *top = get_next_field(&sim_state->encoder.buf); 
     video_field_t *bottom = get_next_field(&sim_state->encoder.buf); 
     
@@ -413,46 +457,48 @@ int schedule_encode(sim_state_t *sim_state, event_queue_t *q) {
     // frame_size = h1 + h2
     float frame_size = top->fobs + bottom->fobs;
     float encode_size = frame_size * sim_state->alpha;
-    
     float process_time = frame_size / sim_state->encoder.c_enc;
     float ttime = 0.0f;
-    if ( sim_state->last_encode_finished_time <= 0.0 ) {
-        ttime = process_time + sim_state->current_time;
+    float scheduled_time = 0.0f; 
+    ttime = process_time + sim_state->current_time;
+
+    // schedule store trigger time
+    if ( sim_state->last_storage_finished_time <= 0.0 ) {
+        scheduled_time = ttime;
     } else {
-        ttime = process_time + sim_state->last_encode_finished_time;
+        scheduled_time = sim_state->last_storage_finished_time;
+        if ( ttime > sim_state->last_storage_finished_time ) {
+            scheduled_time = ttime;
+            sim_state->last_storage_finished_time = ttime; //adjust base
+        } 
     }
-    sim_state->last_encode_finished_time = ttime;
-    insert_event( q, ENCODE, ttime );
-    insert_field( &sim_state->storage.buf, 
-            ENCODED_FIELD , encode_size );
+    insert_event( q, STORE, scheduled_time );
+    insert_field( sim_state, &sim_state->storage.buf, ENCODED_FIELD , encode_size );
     free(top); free(bottom);
+
+    // predict the store finished time
+    video_field_t *encode_field = sim_state->last_encoded;
+    float store_process_time = encode_field->fobs / sim_state->storage.c_storage;
+    if ( sim_state->last_storage_finished_time <= 0.0 ) {
+        sim_state->last_storage_finished_time = sim_state->current_time;
+    } else {
+        sim_state->last_storage_finished_time += store_process_time;
+    }
     return 0;
 }
-
-// schedule_store
-int schedule_store(sim_state_t *sim_state, event_queue_t *q) {
+int schedule_out(sim_state_t *sim_state, event_queue_t *q) {
     video_field_t *encode_field = 
         get_next_field(&sim_state->storage.buf); 
     if ( encode_field->type != ENCODED_FIELD ) {
         printf("type error !!!, encode_field->type != ENCODED_FIELD");
         exit(1);
     }
-
-    // frame_size = a(h1 + h2)
     float frame_size = encode_field->fobs;
-    
     float process_time = frame_size / sim_state->storage.c_storage;
-    float ttime = 0.0f;
-    if ( sim_state->last_storage_finished_time <= 0.0 ) {
-        ttime = process_time + sim_state->current_time;
-    } else {
-        ttime = process_time + sim_state->last_storage_finished_time ;
-    }
-    sim_state->last_storage_finished_time = ttime;
     sim_state->storage_busy_time += process_time;
-    insert_event( q, STORE, ttime );
+    float ttime = process_time + sim_state->current_time; 
+    insert_event( q, OUT, ttime );
     free(encode_field); 
-    return 0;
 }
 //-----------------------------------------------------
 // simulation initialization
