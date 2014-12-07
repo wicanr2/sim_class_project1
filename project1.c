@@ -258,7 +258,6 @@ void clean_event_queue(event_queue_t *q) {
        event = event->next;
        free(tmp);
    }   
-   free(tmp);
 }
 // initial event queue
 void init_event_queue(event_queue_t *q) {
