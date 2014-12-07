@@ -67,37 +67,6 @@ video_field_t* get_next_field( field_buf_t *buf ) {
 }
 
 int print_field_buf( field_buf_t *buf );
-// insert field
-int insert_field( sim_state_t *sim_state, field_buf_t *buf, int type, float fobs ) {
-    // the capacity is equal to zeor or negative, it is a infinite/unlimited buffer in simulation.
-    //printf("insert_field\n");
-    if ( buf->capacity > 0 && buf->num > buf->capacity + 1 ) {
-        return -1;
-    }
-    buf->num++;
-    video_field_t *tmp = calloc(1, sizeof(video_field_t));
-    tmp->type = type;
-    tmp->fobs = fobs;
-    tmp->next = 0;
-    tmp->prev = buf->last;
-    if ( buf->last == 0 ) {
-        buf->head = tmp;
-        buf->last = tmp;
-        //print_field_buf(buf);
-        return 0;
-    }
-    buf->last->next = tmp;
-    buf->last = tmp;
-    //print_field_buf(buf);
-    if ( type == TOP_FIELD ) {
-       sim_state->last_top = tmp; 
-    } else if ( type == BOTTOM_FIELD ) {
-       sim_state->last_bottom = tmp; 
-    } else if ( type == ENCODED_FIELD ) {
-       sim_state->last_encoded = tmp;
-    }
-    return 0;    
-}
 
 int print_field_buf( field_buf_t *buf ) {
     video_field_t *tmp = buf->head;
@@ -194,6 +163,37 @@ typedef struct _sim_state_t {
     storage_t storage; // storage buffer
 } sim_state_t;
 
+// insert field
+int insert_field( sim_state_t *sim_state, field_buf_t *buf, int type, float fobs ) {
+    // the capacity is equal to zeor or negative, it is a infinite/unlimited buffer in simulation.
+    //printf("insert_field\n");
+    if ( buf->capacity > 0 && buf->num > buf->capacity + 1 ) {
+        return -1;
+    }
+    buf->num++;
+    video_field_t *tmp = calloc(1, sizeof(video_field_t));
+    tmp->type = type;
+    tmp->fobs = fobs;
+    tmp->next = 0;
+    tmp->prev = buf->last;
+    if ( type == TOP_FIELD ) {
+       sim_state->last_top = tmp; 
+    } else if ( type == BOTTOM_FIELD ) {
+       sim_state->last_bottom = tmp; 
+    } else if ( type == ENCODED_FIELD ) {
+       sim_state->last_encoded = tmp;
+    }
+    if ( buf->last == 0 ) {
+        buf->head = tmp;
+        buf->last = tmp;
+        //print_field_buf(buf);
+        return 0;
+    }
+    buf->last->next = tmp;
+    buf->last = tmp;
+    //print_field_buf(buf);
+    return 0;    
+}
 //-----------------------------------------------------
 typedef enum event_t {
     NEW_FRAME,
@@ -569,7 +569,7 @@ int main(int argc, char* argv) {
     printf("Tandem Queue Simulation\n");
     sim_initial(&g_sim_state, &g_event_queue, 
             20, -1, 15800, 1600, 1/59.94, 262.5,
-            8*3600, 0.1
+            300, 0.1
             );
     param_report( &g_sim_state );
     printf("do simulation.......\n");
