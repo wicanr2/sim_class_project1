@@ -141,6 +141,7 @@ typedef struct _sim_state_t {
     video_field_t *last_encoded;
 
     float storage_busy_time;
+    float last_storage_process_time;
     // record the finished time of frame in the encoder 
     float last_encode_finished_time; 
 
@@ -249,6 +250,16 @@ typedef struct _event_queue_t {
    event_element_t *last;
 } event_queue_t;
 
+void clean_event_queue(event_queue_t *q) {
+   event_element_t *event = q->head;
+   event_element_t *tmp = 0;
+   while( event ) {
+       tmp = event;
+       event = event->next;
+       free(tmp);
+   }   
+   free(tmp);
+}
 // initial event queue
 void init_event_queue(event_queue_t *q) {
     memset( q, 0, sizeof(event_queue_t));
@@ -386,6 +397,8 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
                 schedule_out( sim_state, q);
                 break;
             case OUT:
+                sim_state->storage_busy_time += 
+                    sim_state->last_storage_process_time;
                 break;
             default:
                 printf("unknow event");
@@ -495,7 +508,7 @@ int schedule_out(sim_state_t *sim_state, event_queue_t *q) {
     }
     float frame_size = encode_field->fobs;
     float process_time = frame_size / sim_state->storage.c_storage;
-    sim_state->storage_busy_time += process_time;
+    sim_state->last_storage_process_time = process_time;
     float ttime = process_time + sim_state->current_time; 
     insert_event( q, OUT, ttime );
     free(encode_field); 
@@ -556,6 +569,11 @@ void report( sim_state_t *sim_state, event_queue_t *q ) {
     printf("lost frames : %d\n", sim_state->lost_frames );    
     printf("current_time : %f\n", sim_state->current_time );    
     printf("storage_busy_time : %f\n", sim_state->storage_busy_time );    
+    float f = (float)(sim_state->lost_frames) / 
+              (float)(sim_state->lost_frames);
+    float u = (float)(sim_state->storage_busy_time) /
+              (float)(sim_state->current_time);
+    printf("f = %.3f, u = %.3f\n", f, u );
 }
 
 //-----------------------------------------------------
@@ -564,18 +582,49 @@ sim_state_t     g_sim_state;
 event_queue_t   g_event_queue;
 
 //-----------------------------------------------------
-// 
-int main(int argc, char* argv) {
-    printf("Tandem Queue Simulation\n");
+int start_simulation(int beta, float tau, float eta) {
     sim_initial(&g_sim_state, &g_event_queue, 
-            20, -1, 15800, 1600, 1/59.94, 262.5,
-            300, 0.1
+            beta, -1, 15800, 1600, tau, eta,
+            //8*3600, 
+            1000,
+            0.1
             );
     param_report( &g_sim_state );
     printf("do simulation.......\n");
     do_simulation( &g_sim_state, &g_event_queue );
     printf("simulation finished\n");
     report( &g_sim_state, &g_event_queue );
+    clean_buffer(&g_sim_state.encoder.buf);
+    clean_buffer(&g_sim_state.storage.buf);
+    clean_event_queue(&g_event_queue);
+    return 0;
+} 
+// main function
+int main(int argc, char* argv) {
+    printf("Tandem Queue Simulation\n");
+    // tau = 1/59.94 , eta = 262.5
+    //beta 20
+    start_simulation(20,1.0/59.94, 262.5);
+    //beta 40
+    start_simulation(40,1.0/59.94, 262.5);
+    //beta 60
+    start_simulation(60,1.0/59.94, 262.5);
+    //beta 80
+    start_simulation(80,1.0/59.94, 262.5);
+    //beta 100
+    start_simulation(100,1.0/59.94, 262.5);
+    // tau = 1/50 , eta = 312.5
+    //beta 20
+    start_simulation(20,1.0/50.0, 312.5);
+    //beta 40
+    start_simulation(40,1.0/50.0, 312.5);
+    //beta 60
+    start_simulation(60,1.0/50.0, 312.5);
+    //beta 80
+    start_simulation(80,1.0/50.0, 312.5);
+    //beta 100
+    start_simulation(100,1.0/50.0, 312.5);
+
     return 0;
 }
 //-----------------------------------------------------
