@@ -521,7 +521,7 @@ int sim_initial(
         int enc_caps, int storage_caps, int c_enc, int c_storage,
         float arrival_mean, float field_comp_mean, float stop_time, float alpha )
 {
-    memset( sim_state, 0, sizeof( sim_state ));
+    memset( sim_state, 0, sizeof( sim_state_t ));
     init_event_queue( q ); 
     sim_state->encoder_capacity_beta = enc_caps;
     sim_state->storage_capacity = storage_caps;
@@ -569,10 +569,10 @@ void report( sim_state_t *sim_state, event_queue_t *q ) {
     printf("current_time : %f\n", sim_state->current_time );    
     printf("storage_busy_time : %f\n", sim_state->storage_busy_time );    
     float f = (float)(sim_state->lost_frames) / 
-              (float)(sim_state->lost_frames);
+              (float)(sim_state->total_frames);
     float u = (float)(sim_state->storage_busy_time) /
               (float)(sim_state->current_time);
-    printf("f = %.3f, u = %.3f\n", f, u );
+    printf("f = %.5f, u = %.5f\n", f, u );
 }
 
 //-----------------------------------------------------
@@ -584,10 +584,7 @@ event_queue_t   g_event_queue;
 int start_simulation(int beta, float tau, float eta) {
     sim_initial(&g_sim_state, &g_event_queue, 
             beta, -1, 15800, 1600, tau, eta,
-            //8*3600, 
-            1000,
-            0.1
-            );
+            8*3600, 0.1 );
     param_report( &g_sim_state );
     printf("do simulation.......\n");
     do_simulation( &g_sim_state, &g_event_queue );
@@ -623,7 +620,6 @@ int main(int argc, char* argv) {
     start_simulation(80,1.0/50.0, 312.5);
     //beta 100
     start_simulation(100,1.0/50.0, 312.5);
-
     return 0;
 }
 //-----------------------------------------------------
