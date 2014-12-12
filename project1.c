@@ -11,6 +11,7 @@
 //encoder and storage
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <string.h>
 #include <unistd.h>
 #include <math.h>
@@ -21,7 +22,9 @@
 /* Exponential variate generation function. */
 float expon(float mean) {
     /* Return an exponential random variate with mean "mean". */
-    return -mean * log(lcgrand(1));
+    //return -mean * log(lcgrand(1));
+    double x = drand48();
+    return -mean * log(x);
 }
 //-----------------------------------------------------
 #define TOP_FIELD 1
@@ -597,6 +600,7 @@ int start_simulation(int beta, float tau, float eta) {
 } 
 // main function
 int main(int argc, char* argv) {
+    srand(time(NULL));
     printf("Tandem Queue Simulation\n");
     // tau = 1/59.94 , eta = 262.5
     //beta 20
