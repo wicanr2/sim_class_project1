@@ -1,0 +1,20 @@
+Tandem Queue Simulation
+simulation parameter
+simulation:
+	stop_time : 28800.000000
+encoder:
+	c_enc(encoder process rate) = 15800
+	beta (encoder buffer length)  = 20
+storage:
+	c_storage(storage processing rate) = 1600
+	storage buffer length  = -1
+field:
+	field inter-arrival time = 0.016683
+	field complexity = 262.500000
+	alpha = 0.100000
+do simulation.......
+simluation timeoutsimulation endsimulation finished
+total frames : 3453586
+lost frames : 0
+current_time : 28800.009766
+storage_busy_time : 28439.996094
