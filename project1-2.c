@@ -361,8 +361,10 @@ event_element_t *get_next_event( event_queue_t *q ) {
 int print_event_queue( event_queue_t *q ) {
     event_element_t *tmp = q->head;
     printf("----------event queue-----------------\n");
+    int i = 0;
     while ( tmp != 0 ) {
-        printf("idx: %d event: %s, trigger time = %f\n", tmp, event_to_str(tmp->e), tmp->ttime );
+        printf("idx: %d event: %s, trigger time = %f\n", i, event_to_str(tmp->e), tmp->ttime );
+	i ++;
         tmp = tmp->next;
     }
     printf("--------------------------------------\n");
@@ -682,18 +684,20 @@ int simulation2() {
     srand48(2048219);
     start_simulation(100,1.0/50.0, 312.5, 8.0f* 3600.0f);
 }
+float _test_stop_time = 5*60; // 5 mins
 int simulation_test() {
     srand48(2048219);
-    start_simulation(20,1.0/59.94, 262.5, 5*60);
+    start_simulation(20,1.0/59.94, 262.5, _test_stop_time);
 }
 // main function
-int main(int argc, char* argv) {
+int main(int argc, char** argv) {
     printf("Tandem Queue Simulation\n");
     // tau = 1/50 , eta = 312.5
     //start_simulation(80000,1.0/59.94, 262.5);
     /*
     */
     if ( argc >= 2 ) { 
+	_test_stop_time = atof(argv[1]);
         print_event_queue_flag = 1;
         simulation_test();
     } else {

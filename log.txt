@@ -1,0 +1,1746 @@
+Tandem Queue Simulation
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.000000
+--------------------------------------
+simulation parameter
+simulation:
+	stop_time : 0.500000
+encoder:
+	c_enc(encoder process rate) = 15800
+	beta (encoder buffer length)  = 20
+storage:
+	c_storage(storage processing rate) = 1600
+	storage buffer length  = -1
+field:
+	field inter-arrival time = 0.016683
+	field complexity = 262.500000
+	alpha = 0.100000
+do simulation.......
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.000000
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.000000
+idx: 1 event: Bottom Arrival, trigger time = 0.000000
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.000000
+idx: 1 event: Bottom Arrival, trigger time = 0.000000
+idx: 2 event: New Frame, trigger time = 0.089494
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.000000
+idx: 1 event: New Frame, trigger time = 0.089494
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Store, trigger time = 0.037141
+idx: 1 event: New Frame, trigger time = 0.089494
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Out, trigger time = 0.073818
+idx: 1 event: New Frame, trigger time = 0.089494
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.089494
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.089494
+idx: 1 event: Bottom Arrival, trigger time = 0.089494
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.089494
+idx: 1 event: Bottom Arrival, trigger time = 0.089494
+idx: 2 event: New Frame, trigger time = 0.103797
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.037141
+idx: 1 event: New Frame, trigger time = 0.103797
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Store, trigger time = 0.045863
+idx: 1 event: New Frame, trigger time = 0.103797
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Out, trigger time = 0.054476
+idx: 1 event: New Frame, trigger time = 0.103797
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.103797
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.103797
+idx: 1 event: Bottom Arrival, trigger time = 0.103797
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.103797
+idx: 1 event: Bottom Arrival, trigger time = 0.103797
+idx: 2 event: New Frame, trigger time = 0.105773
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.045863
+idx: 1 event: New Frame, trigger time = 0.105773
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Store, trigger time = 0.087677
+idx: 1 event: New Frame, trigger time = 0.105773
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.105773
+idx: 1 event: Out, trigger time = 0.128969
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.105773
+idx: 1 event: Out, trigger time = 0.128969
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.105773
+idx: 1 event: Bottom Arrival, trigger time = 0.105773
+idx: 2 event: Out, trigger time = 0.128969
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.105773
+idx: 1 event: Bottom Arrival, trigger time = 0.105773
+idx: 2 event: New Frame, trigger time = 0.119756
+idx: 3 event: Out, trigger time = 0.128969
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.087677
+idx: 1 event: New Frame, trigger time = 0.119756
+idx: 2 event: Out, trigger time = 0.128969
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.119756
+idx: 1 event: Out, trigger time = 0.128969
+idx: 2 event: Store, trigger time = 0.128969
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.119756
+idx: 1 event: Out, trigger time = 0.128969
+idx: 2 event: Store, trigger time = 0.128969
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.119756
+idx: 1 event: Bottom Arrival, trigger time = 0.119756
+idx: 2 event: Out, trigger time = 0.128969
+idx: 3 event: Store, trigger time = 0.128969
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.119756
+idx: 1 event: Bottom Arrival, trigger time = 0.119756
+idx: 2 event: Out, trigger time = 0.128969
+idx: 3 event: Store, trigger time = 0.128969
+idx: 4 event: New Frame, trigger time = 0.146823
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.092097
+idx: 1 event: Out, trigger time = 0.128969
+idx: 2 event: Store, trigger time = 0.128969
+idx: 3 event: New Frame, trigger time = 0.146823
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Out, trigger time = 0.128969
+idx: 1 event: Store, trigger time = 0.128969
+idx: 2 event: Store, trigger time = 0.143106
+idx: 3 event: New Frame, trigger time = 0.146823
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Out, trigger time = 0.133333
+idx: 1 event: Store, trigger time = 0.143106
+idx: 2 event: New Frame, trigger time = 0.146823
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.146823
+idx: 1 event: Out, trigger time = 0.193477
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.146823
+idx: 1 event: Out, trigger time = 0.193477
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.146823
+idx: 1 event: Bottom Arrival, trigger time = 0.146823
+idx: 2 event: Out, trigger time = 0.193477
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.146823
+idx: 1 event: Bottom Arrival, trigger time = 0.146823
+idx: 2 event: New Frame, trigger time = 0.156360
+idx: 3 event: Out, trigger time = 0.193477
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.143106
+idx: 1 event: New Frame, trigger time = 0.156360
+idx: 2 event: Out, trigger time = 0.193477
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.156360
+idx: 1 event: Out, trigger time = 0.193477
+idx: 2 event: Store, trigger time = 0.193477
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.156360
+idx: 1 event: Out, trigger time = 0.193477
+idx: 2 event: Store, trigger time = 0.193477
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.156360
+idx: 1 event: Bottom Arrival, trigger time = 0.156360
+idx: 2 event: Out, trigger time = 0.193477
+idx: 3 event: Store, trigger time = 0.193477
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.156360
+idx: 1 event: Bottom Arrival, trigger time = 0.156360
+idx: 2 event: New Frame, trigger time = 0.192931
+idx: 3 event: Out, trigger time = 0.193477
+idx: 4 event: Store, trigger time = 0.193477
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.179618
+idx: 1 event: New Frame, trigger time = 0.192931
+idx: 2 event: Out, trigger time = 0.193477
+idx: 3 event: Store, trigger time = 0.193477
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.192931
+idx: 1 event: Out, trigger time = 0.193477
+idx: 2 event: Store, trigger time = 0.193477
+idx: 3 event: Store, trigger time = 0.229533
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.192931
+idx: 1 event: Out, trigger time = 0.193477
+idx: 2 event: Store, trigger time = 0.193477
+idx: 3 event: Store, trigger time = 0.229533
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.192931
+idx: 1 event: Bottom Arrival, trigger time = 0.192931
+idx: 2 event: Out, trigger time = 0.193477
+idx: 3 event: Store, trigger time = 0.193477
+idx: 4 event: Store, trigger time = 0.229533
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.192931
+idx: 1 event: Bottom Arrival, trigger time = 0.192931
+idx: 2 event: Out, trigger time = 0.193477
+idx: 3 event: Store, trigger time = 0.193477
+idx: 4 event: New Frame, trigger time = 0.202936
+idx: 5 event: Store, trigger time = 0.229533
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Out, trigger time = 0.193477
+idx: 1 event: Store, trigger time = 0.193477
+idx: 2 event: New Frame, trigger time = 0.202936
+idx: 3 event: Encode, trigger time = 0.205623
+idx: 4 event: Store, trigger time = 0.229533
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.202936
+idx: 1 event: Encode, trigger time = 0.205623
+idx: 2 event: Store, trigger time = 0.229533
+idx: 3 event: Out, trigger time = 0.229533
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.202936
+idx: 1 event: Encode, trigger time = 0.205623
+idx: 2 event: Store, trigger time = 0.229533
+idx: 3 event: Out, trigger time = 0.229533
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.202936
+idx: 1 event: Bottom Arrival, trigger time = 0.202936
+idx: 2 event: Encode, trigger time = 0.205623
+idx: 3 event: Store, trigger time = 0.229533
+idx: 4 event: Out, trigger time = 0.229533
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.202936
+idx: 1 event: Bottom Arrival, trigger time = 0.202936
+idx: 2 event: Encode, trigger time = 0.205623
+idx: 3 event: New Frame, trigger time = 0.210399
+idx: 4 event: Store, trigger time = 0.229533
+idx: 5 event: Out, trigger time = 0.229533
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.205623
+idx: 1 event: New Frame, trigger time = 0.210399
+idx: 2 event: Store, trigger time = 0.229533
+idx: 3 event: Out, trigger time = 0.229533
+idx: 4 event: Encode, trigger time = 0.248051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.210399
+idx: 1 event: Store, trigger time = 0.229533
+idx: 2 event: Out, trigger time = 0.229533
+idx: 3 event: Encode, trigger time = 0.248051
+idx: 4 event: Store, trigger time = 0.255213
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.210399
+idx: 1 event: Store, trigger time = 0.229533
+idx: 2 event: Out, trigger time = 0.229533
+idx: 3 event: Encode, trigger time = 0.248051
+idx: 4 event: Store, trigger time = 0.255213
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.210399
+idx: 1 event: Bottom Arrival, trigger time = 0.210399
+idx: 2 event: Store, trigger time = 0.229533
+idx: 3 event: Out, trigger time = 0.229533
+idx: 4 event: Encode, trigger time = 0.248051
+idx: 5 event: Store, trigger time = 0.255213
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.210399
+idx: 1 event: Bottom Arrival, trigger time = 0.210399
+idx: 2 event: New Frame, trigger time = 0.227676
+idx: 3 event: Store, trigger time = 0.229533
+idx: 4 event: Out, trigger time = 0.229533
+idx: 5 event: Encode, trigger time = 0.248051
+idx: 6 event: Store, trigger time = 0.255213
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.227676
+idx: 1 event: Store, trigger time = 0.229533
+idx: 2 event: Out, trigger time = 0.229533
+idx: 3 event: Encode, trigger time = 0.248051
+idx: 4 event: Store, trigger time = 0.255213
+idx: 5 event: Encode, trigger time = 0.299703
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.227676
+idx: 1 event: Store, trigger time = 0.229533
+idx: 2 event: Out, trigger time = 0.229533
+idx: 3 event: Encode, trigger time = 0.248051
+idx: 4 event: Store, trigger time = 0.255213
+idx: 5 event: Encode, trigger time = 0.299703
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.227676
+idx: 1 event: Bottom Arrival, trigger time = 0.227676
+idx: 2 event: Store, trigger time = 0.229533
+idx: 3 event: Out, trigger time = 0.229533
+idx: 4 event: Encode, trigger time = 0.248051
+idx: 5 event: Store, trigger time = 0.255213
+idx: 6 event: Encode, trigger time = 0.299703
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.227676
+idx: 1 event: Bottom Arrival, trigger time = 0.227676
+idx: 2 event: Store, trigger time = 0.229533
+idx: 3 event: Out, trigger time = 0.229533
+idx: 4 event: New Frame, trigger time = 0.232696
+idx: 5 event: Encode, trigger time = 0.248051
+idx: 6 event: Store, trigger time = 0.255213
+idx: 7 event: Encode, trigger time = 0.299703
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Store, trigger time = 0.229533
+idx: 1 event: Out, trigger time = 0.229533
+idx: 2 event: New Frame, trigger time = 0.232696
+idx: 3 event: Encode, trigger time = 0.248051
+idx: 4 event: Store, trigger time = 0.255213
+idx: 5 event: Encode, trigger time = 0.299703
+idx: 6 event: Encode, trigger time = 0.311982
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Out, trigger time = 0.229533
+idx: 1 event: New Frame, trigger time = 0.232696
+idx: 2 event: Encode, trigger time = 0.248051
+idx: 3 event: Store, trigger time = 0.255213
+idx: 4 event: Out, trigger time = 0.255213
+idx: 5 event: Encode, trigger time = 0.299703
+idx: 6 event: Encode, trigger time = 0.311982
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.232696
+idx: 1 event: Encode, trigger time = 0.248051
+idx: 2 event: Store, trigger time = 0.255213
+idx: 3 event: Out, trigger time = 0.255213
+idx: 4 event: Encode, trigger time = 0.299703
+idx: 5 event: Encode, trigger time = 0.311982
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.232696
+idx: 1 event: Bottom Arrival, trigger time = 0.232696
+idx: 2 event: Encode, trigger time = 0.248051
+idx: 3 event: Store, trigger time = 0.255213
+idx: 4 event: Out, trigger time = 0.255213
+idx: 5 event: Encode, trigger time = 0.299703
+idx: 6 event: Encode, trigger time = 0.311982
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.232696
+idx: 1 event: Bottom Arrival, trigger time = 0.232696
+idx: 2 event: Encode, trigger time = 0.248051
+idx: 3 event: New Frame, trigger time = 0.250383
+idx: 4 event: Store, trigger time = 0.255213
+idx: 5 event: Out, trigger time = 0.255213
+idx: 6 event: Encode, trigger time = 0.299703
+idx: 7 event: Encode, trigger time = 0.311982
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.248051
+idx: 1 event: New Frame, trigger time = 0.250383
+idx: 2 event: Store, trigger time = 0.255213
+idx: 3 event: Out, trigger time = 0.255213
+idx: 4 event: Encode, trigger time = 0.299703
+idx: 5 event: Encode, trigger time = 0.311982
+idx: 6 event: Encode, trigger time = 0.325315
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.250383
+idx: 1 event: Store, trigger time = 0.255213
+idx: 2 event: Out, trigger time = 0.255213
+idx: 3 event: Encode, trigger time = 0.299703
+idx: 4 event: Store, trigger time = 0.299703
+idx: 5 event: Encode, trigger time = 0.311982
+idx: 6 event: Encode, trigger time = 0.325315
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.250383
+idx: 1 event: Store, trigger time = 0.255213
+idx: 2 event: Out, trigger time = 0.255213
+idx: 3 event: Encode, trigger time = 0.299703
+idx: 4 event: Store, trigger time = 0.299703
+idx: 5 event: Encode, trigger time = 0.311982
+idx: 6 event: Encode, trigger time = 0.325315
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.250383
+idx: 1 event: Bottom Arrival, trigger time = 0.250383
+idx: 2 event: Store, trigger time = 0.255213
+idx: 3 event: Out, trigger time = 0.255213
+idx: 4 event: Encode, trigger time = 0.299703
+idx: 5 event: Store, trigger time = 0.299703
+idx: 6 event: Encode, trigger time = 0.311982
+idx: 7 event: Encode, trigger time = 0.325315
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.250383
+idx: 1 event: Bottom Arrival, trigger time = 0.250383
+idx: 2 event: Store, trigger time = 0.255213
+idx: 3 event: Out, trigger time = 0.255213
+idx: 4 event: New Frame, trigger time = 0.258638
+idx: 5 event: Encode, trigger time = 0.299703
+idx: 6 event: Store, trigger time = 0.299703
+idx: 7 event: Encode, trigger time = 0.311982
+idx: 8 event: Encode, trigger time = 0.325315
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Store, trigger time = 0.255213
+idx: 1 event: Out, trigger time = 0.255213
+idx: 2 event: New Frame, trigger time = 0.258638
+idx: 3 event: Encode, trigger time = 0.299703
+idx: 4 event: Store, trigger time = 0.299703
+idx: 5 event: Encode, trigger time = 0.311982
+idx: 6 event: Encode, trigger time = 0.325315
+idx: 7 event: Encode, trigger time = 0.352782
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Out, trigger time = 0.255213
+idx: 1 event: New Frame, trigger time = 0.258638
+idx: 2 event: Out, trigger time = 0.297111
+idx: 3 event: Encode, trigger time = 0.299703
+idx: 4 event: Store, trigger time = 0.299703
+idx: 5 event: Encode, trigger time = 0.311982
+idx: 6 event: Encode, trigger time = 0.325315
+idx: 7 event: Encode, trigger time = 0.352782
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.258638
+idx: 1 event: Out, trigger time = 0.297111
+idx: 2 event: Encode, trigger time = 0.299703
+idx: 3 event: Store, trigger time = 0.299703
+idx: 4 event: Encode, trigger time = 0.311982
+idx: 5 event: Encode, trigger time = 0.325315
+idx: 6 event: Encode, trigger time = 0.352782
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.258638
+idx: 1 event: Bottom Arrival, trigger time = 0.258638
+idx: 2 event: Out, trigger time = 0.297111
+idx: 3 event: Encode, trigger time = 0.299703
+idx: 4 event: Store, trigger time = 0.299703
+idx: 5 event: Encode, trigger time = 0.311982
+idx: 6 event: Encode, trigger time = 0.325315
+idx: 7 event: Encode, trigger time = 0.352782
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.258638
+idx: 1 event: Bottom Arrival, trigger time = 0.258638
+idx: 2 event: New Frame, trigger time = 0.262925
+idx: 3 event: Out, trigger time = 0.297111
+idx: 4 event: Encode, trigger time = 0.299703
+idx: 5 event: Store, trigger time = 0.299703
+idx: 6 event: Encode, trigger time = 0.311982
+idx: 7 event: Encode, trigger time = 0.325315
+idx: 8 event: Encode, trigger time = 0.352782
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.262925
+idx: 1 event: Out, trigger time = 0.297111
+idx: 2 event: Encode, trigger time = 0.299703
+idx: 3 event: Store, trigger time = 0.299703
+idx: 4 event: Encode, trigger time = 0.311982
+idx: 5 event: Encode, trigger time = 0.325315
+idx: 6 event: Encode, trigger time = 0.352782
+idx: 7 event: Encode, trigger time = 0.420001
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.262925
+idx: 1 event: Out, trigger time = 0.297111
+idx: 2 event: Encode, trigger time = 0.299703
+idx: 3 event: Store, trigger time = 0.299703
+idx: 4 event: Encode, trigger time = 0.311982
+idx: 5 event: Encode, trigger time = 0.325315
+idx: 6 event: Encode, trigger time = 0.352782
+idx: 7 event: Encode, trigger time = 0.420001
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.262925
+idx: 1 event: Bottom Arrival, trigger time = 0.262925
+idx: 2 event: Out, trigger time = 0.297111
+idx: 3 event: Encode, trigger time = 0.299703
+idx: 4 event: Store, trigger time = 0.299703
+idx: 5 event: Encode, trigger time = 0.311982
+idx: 6 event: Encode, trigger time = 0.325315
+idx: 7 event: Encode, trigger time = 0.352782
+idx: 8 event: Encode, trigger time = 0.420001
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.262925
+idx: 1 event: Bottom Arrival, trigger time = 0.262925
+idx: 2 event: New Frame, trigger time = 0.264009
+idx: 3 event: Out, trigger time = 0.297111
+idx: 4 event: Encode, trigger time = 0.299703
+idx: 5 event: Store, trigger time = 0.299703
+idx: 6 event: Encode, trigger time = 0.311982
+idx: 7 event: Encode, trigger time = 0.325315
+idx: 8 event: Encode, trigger time = 0.352782
+idx: 9 event: Encode, trigger time = 0.420001
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.264009
+idx: 1 event: Out, trigger time = 0.297111
+idx: 2 event: Encode, trigger time = 0.299703
+idx: 3 event: Store, trigger time = 0.299703
+idx: 4 event: Encode, trigger time = 0.311982
+idx: 5 event: Encode, trigger time = 0.325315
+idx: 6 event: Encode, trigger time = 0.352782
+idx: 7 event: Encode, trigger time = 0.420001
+idx: 8 event: Encode, trigger time = 0.479327
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.264009
+idx: 1 event: Out, trigger time = 0.297111
+idx: 2 event: Encode, trigger time = 0.299703
+idx: 3 event: Store, trigger time = 0.299703
+idx: 4 event: Encode, trigger time = 0.311982
+idx: 5 event: Encode, trigger time = 0.325315
+idx: 6 event: Encode, trigger time = 0.352782
+idx: 7 event: Encode, trigger time = 0.420001
+idx: 8 event: Encode, trigger time = 0.479327
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.264009
+idx: 1 event: Bottom Arrival, trigger time = 0.264009
+idx: 2 event: Out, trigger time = 0.297111
+idx: 3 event: Encode, trigger time = 0.299703
+idx: 4 event: Store, trigger time = 0.299703
+idx: 5 event: Encode, trigger time = 0.311982
+idx: 6 event: Encode, trigger time = 0.325315
+idx: 7 event: Encode, trigger time = 0.352782
+idx: 8 event: Encode, trigger time = 0.420001
+idx: 9 event: Encode, trigger time = 0.479327
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.264009
+idx: 1 event: Bottom Arrival, trigger time = 0.264009
+idx: 2 event: New Frame, trigger time = 0.267280
+idx: 3 event: Out, trigger time = 0.297111
+idx: 4 event: Encode, trigger time = 0.299703
+idx: 5 event: Store, trigger time = 0.299703
+idx: 6 event: Encode, trigger time = 0.311982
+idx: 7 event: Encode, trigger time = 0.325315
+idx: 8 event: Encode, trigger time = 0.352782
+idx: 9 event: Encode, trigger time = 0.420001
+idx: 10 event: Encode, trigger time = 0.479327
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.267280
+idx: 1 event: Out, trigger time = 0.297111
+idx: 2 event: Encode, trigger time = 0.299703
+idx: 3 event: Store, trigger time = 0.299703
+idx: 4 event: Encode, trigger time = 0.311982
+idx: 5 event: Encode, trigger time = 0.325315
+idx: 6 event: Encode, trigger time = 0.352782
+idx: 7 event: Encode, trigger time = 0.420001
+idx: 8 event: Encode, trigger time = 0.479327
+idx: 9 event: Encode, trigger time = 0.503247
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.267280
+idx: 1 event: Out, trigger time = 0.297111
+idx: 2 event: Encode, trigger time = 0.299703
+idx: 3 event: Store, trigger time = 0.299703
+idx: 4 event: Encode, trigger time = 0.311982
+idx: 5 event: Encode, trigger time = 0.325315
+idx: 6 event: Encode, trigger time = 0.352782
+idx: 7 event: Encode, trigger time = 0.420001
+idx: 8 event: Encode, trigger time = 0.479327
+idx: 9 event: Encode, trigger time = 0.503247
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.267280
+idx: 1 event: Bottom Arrival, trigger time = 0.267280
+idx: 2 event: Out, trigger time = 0.297111
+idx: 3 event: Encode, trigger time = 0.299703
+idx: 4 event: Store, trigger time = 0.299703
+idx: 5 event: Encode, trigger time = 0.311982
+idx: 6 event: Encode, trigger time = 0.325315
+idx: 7 event: Encode, trigger time = 0.352782
+idx: 8 event: Encode, trigger time = 0.420001
+idx: 9 event: Encode, trigger time = 0.479327
+idx: 10 event: Encode, trigger time = 0.503247
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.267280
+idx: 1 event: Bottom Arrival, trigger time = 0.267280
+idx: 2 event: New Frame, trigger time = 0.287638
+idx: 3 event: Out, trigger time = 0.297111
+idx: 4 event: Encode, trigger time = 0.299703
+idx: 5 event: Store, trigger time = 0.299703
+idx: 6 event: Encode, trigger time = 0.311982
+idx: 7 event: Encode, trigger time = 0.325315
+idx: 8 event: Encode, trigger time = 0.352782
+idx: 9 event: Encode, trigger time = 0.420001
+idx: 10 event: Encode, trigger time = 0.479327
+idx: 11 event: Encode, trigger time = 0.503247
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.287638
+idx: 1 event: Out, trigger time = 0.297111
+idx: 2 event: Encode, trigger time = 0.299703
+idx: 3 event: Store, trigger time = 0.299703
+idx: 4 event: Encode, trigger time = 0.311982
+idx: 5 event: Encode, trigger time = 0.325315
+idx: 6 event: Encode, trigger time = 0.352782
+idx: 7 event: Encode, trigger time = 0.420001
+idx: 8 event: Encode, trigger time = 0.479327
+idx: 9 event: Encode, trigger time = 0.503247
+idx: 10 event: Encode, trigger time = 0.516941
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.287638
+idx: 1 event: Out, trigger time = 0.297111
+idx: 2 event: Encode, trigger time = 0.299703
+idx: 3 event: Store, trigger time = 0.299703
+idx: 4 event: Encode, trigger time = 0.311982
+idx: 5 event: Encode, trigger time = 0.325315
+idx: 6 event: Encode, trigger time = 0.352782
+idx: 7 event: Encode, trigger time = 0.420001
+idx: 8 event: Encode, trigger time = 0.479327
+idx: 9 event: Encode, trigger time = 0.503247
+idx: 10 event: Encode, trigger time = 0.516941
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.287638
+idx: 1 event: Bottom Arrival, trigger time = 0.287638
+idx: 2 event: Out, trigger time = 0.297111
+idx: 3 event: Encode, trigger time = 0.299703
+idx: 4 event: Store, trigger time = 0.299703
+idx: 5 event: Encode, trigger time = 0.311982
+idx: 6 event: Encode, trigger time = 0.325315
+idx: 7 event: Encode, trigger time = 0.352782
+idx: 8 event: Encode, trigger time = 0.420001
+idx: 9 event: Encode, trigger time = 0.479327
+idx: 10 event: Encode, trigger time = 0.503247
+idx: 11 event: Encode, trigger time = 0.516941
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.287638
+idx: 1 event: Bottom Arrival, trigger time = 0.287638
+idx: 2 event: Out, trigger time = 0.297111
+idx: 3 event: Encode, trigger time = 0.299703
+idx: 4 event: Store, trigger time = 0.299703
+idx: 5 event: New Frame, trigger time = 0.305429
+idx: 6 event: Encode, trigger time = 0.311982
+idx: 7 event: Encode, trigger time = 0.325315
+idx: 8 event: Encode, trigger time = 0.352782
+idx: 9 event: Encode, trigger time = 0.420001
+idx: 10 event: Encode, trigger time = 0.479327
+idx: 11 event: Encode, trigger time = 0.503247
+idx: 12 event: Encode, trigger time = 0.516941
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Out, trigger time = 0.297111
+idx: 1 event: Encode, trigger time = 0.299703
+idx: 2 event: Store, trigger time = 0.299703
+idx: 3 event: New Frame, trigger time = 0.305429
+idx: 4 event: Encode, trigger time = 0.311982
+idx: 5 event: Encode, trigger time = 0.325315
+idx: 6 event: Encode, trigger time = 0.352782
+idx: 7 event: Encode, trigger time = 0.420001
+idx: 8 event: Encode, trigger time = 0.479327
+idx: 9 event: Encode, trigger time = 0.503247
+idx: 10 event: Encode, trigger time = 0.516941
+idx: 11 event: Encode, trigger time = 0.537711
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Store, trigger time = 0.299703
+idx: 1 event: New Frame, trigger time = 0.305429
+idx: 2 event: Encode, trigger time = 0.311982
+idx: 3 event: Encode, trigger time = 0.325315
+idx: 4 event: Store, trigger time = 0.350709
+idx: 5 event: Encode, trigger time = 0.352782
+idx: 6 event: Encode, trigger time = 0.420001
+idx: 7 event: Encode, trigger time = 0.479327
+idx: 8 event: Encode, trigger time = 0.503247
+idx: 9 event: Encode, trigger time = 0.516941
+idx: 10 event: Encode, trigger time = 0.537711
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.305429
+idx: 1 event: Encode, trigger time = 0.311982
+idx: 2 event: Encode, trigger time = 0.325315
+idx: 3 event: Store, trigger time = 0.350709
+idx: 4 event: Out, trigger time = 0.350709
+idx: 5 event: Encode, trigger time = 0.352782
+idx: 6 event: Encode, trigger time = 0.420001
+idx: 7 event: Encode, trigger time = 0.479327
+idx: 8 event: Encode, trigger time = 0.503247
+idx: 9 event: Encode, trigger time = 0.516941
+idx: 10 event: Encode, trigger time = 0.537711
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.305429
+idx: 1 event: Encode, trigger time = 0.311982
+idx: 2 event: Encode, trigger time = 0.325315
+idx: 3 event: Store, trigger time = 0.350709
+idx: 4 event: Out, trigger time = 0.350709
+idx: 5 event: Encode, trigger time = 0.352782
+idx: 6 event: Encode, trigger time = 0.420001
+idx: 7 event: Encode, trigger time = 0.479327
+idx: 8 event: Encode, trigger time = 0.503247
+idx: 9 event: Encode, trigger time = 0.516941
+idx: 10 event: Encode, trigger time = 0.537711
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.305429
+idx: 1 event: Bottom Arrival, trigger time = 0.305429
+idx: 2 event: Encode, trigger time = 0.311982
+idx: 3 event: Encode, trigger time = 0.325315
+idx: 4 event: Store, trigger time = 0.350709
+idx: 5 event: Out, trigger time = 0.350709
+idx: 6 event: Encode, trigger time = 0.352782
+idx: 7 event: Encode, trigger time = 0.420001
+idx: 8 event: Encode, trigger time = 0.479327
+idx: 9 event: Encode, trigger time = 0.503247
+idx: 10 event: Encode, trigger time = 0.516941
+idx: 11 event: Encode, trigger time = 0.537711
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.305429
+idx: 1 event: Bottom Arrival, trigger time = 0.305429
+idx: 2 event: Encode, trigger time = 0.311982
+idx: 3 event: Encode, trigger time = 0.325315
+idx: 4 event: New Frame, trigger time = 0.325533
+idx: 5 event: Store, trigger time = 0.350709
+idx: 6 event: Out, trigger time = 0.350709
+idx: 7 event: Encode, trigger time = 0.352782
+idx: 8 event: Encode, trigger time = 0.420001
+idx: 9 event: Encode, trigger time = 0.479327
+idx: 10 event: Encode, trigger time = 0.503247
+idx: 11 event: Encode, trigger time = 0.516941
+idx: 12 event: Encode, trigger time = 0.537711
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.311982
+idx: 1 event: Encode, trigger time = 0.325315
+idx: 2 event: New Frame, trigger time = 0.325533
+idx: 3 event: Store, trigger time = 0.350709
+idx: 4 event: Out, trigger time = 0.350709
+idx: 5 event: Encode, trigger time = 0.352782
+idx: 6 event: Encode, trigger time = 0.420001
+idx: 7 event: Encode, trigger time = 0.479327
+idx: 8 event: Encode, trigger time = 0.503247
+idx: 9 event: Encode, trigger time = 0.516941
+idx: 10 event: Encode, trigger time = 0.537711
+idx: 11 event: Encode, trigger time = 0.589263
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.325315
+idx: 1 event: New Frame, trigger time = 0.325533
+idx: 2 event: Store, trigger time = 0.350709
+idx: 3 event: Out, trigger time = 0.350709
+idx: 4 event: Encode, trigger time = 0.352782
+idx: 5 event: Store, trigger time = 0.362834
+idx: 6 event: Encode, trigger time = 0.420001
+idx: 7 event: Encode, trigger time = 0.479327
+idx: 8 event: Encode, trigger time = 0.503247
+idx: 9 event: Encode, trigger time = 0.516941
+idx: 10 event: Encode, trigger time = 0.537711
+idx: 11 event: Encode, trigger time = 0.589263
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.325533
+idx: 1 event: Store, trigger time = 0.350709
+idx: 2 event: Out, trigger time = 0.350709
+idx: 3 event: Encode, trigger time = 0.352782
+idx: 4 event: Store, trigger time = 0.362834
+idx: 5 event: Store, trigger time = 0.376001
+idx: 6 event: Encode, trigger time = 0.420001
+idx: 7 event: Encode, trigger time = 0.479327
+idx: 8 event: Encode, trigger time = 0.503247
+idx: 9 event: Encode, trigger time = 0.516941
+idx: 10 event: Encode, trigger time = 0.537711
+idx: 11 event: Encode, trigger time = 0.589263
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.325533
+idx: 1 event: Store, trigger time = 0.350709
+idx: 2 event: Out, trigger time = 0.350709
+idx: 3 event: Encode, trigger time = 0.352782
+idx: 4 event: Store, trigger time = 0.362834
+idx: 5 event: Store, trigger time = 0.376001
+idx: 6 event: Encode, trigger time = 0.420001
+idx: 7 event: Encode, trigger time = 0.479327
+idx: 8 event: Encode, trigger time = 0.503247
+idx: 9 event: Encode, trigger time = 0.516941
+idx: 10 event: Encode, trigger time = 0.537711
+idx: 11 event: Encode, trigger time = 0.589263
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.325533
+idx: 1 event: Bottom Arrival, trigger time = 0.325533
+idx: 2 event: Store, trigger time = 0.350709
+idx: 3 event: Out, trigger time = 0.350709
+idx: 4 event: Encode, trigger time = 0.352782
+idx: 5 event: Store, trigger time = 0.362834
+idx: 6 event: Store, trigger time = 0.376001
+idx: 7 event: Encode, trigger time = 0.420001
+idx: 8 event: Encode, trigger time = 0.479327
+idx: 9 event: Encode, trigger time = 0.503247
+idx: 10 event: Encode, trigger time = 0.516941
+idx: 11 event: Encode, trigger time = 0.537711
+idx: 12 event: Encode, trigger time = 0.589263
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.325533
+idx: 1 event: Bottom Arrival, trigger time = 0.325533
+idx: 2 event: Store, trigger time = 0.350709
+idx: 3 event: Out, trigger time = 0.350709
+idx: 4 event: New Frame, trigger time = 0.351640
+idx: 5 event: Encode, trigger time = 0.352782
+idx: 6 event: Store, trigger time = 0.362834
+idx: 7 event: Store, trigger time = 0.376001
+idx: 8 event: Encode, trigger time = 0.420001
+idx: 9 event: Encode, trigger time = 0.479327
+idx: 10 event: Encode, trigger time = 0.503247
+idx: 11 event: Encode, trigger time = 0.516941
+idx: 12 event: Encode, trigger time = 0.537711
+idx: 13 event: Encode, trigger time = 0.589263
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Out, trigger time = 0.350709
+idx: 1 event: New Frame, trigger time = 0.351640
+idx: 2 event: Encode, trigger time = 0.352782
+idx: 3 event: Store, trigger time = 0.362834
+idx: 4 event: Out, trigger time = 0.362834
+idx: 5 event: Store, trigger time = 0.376001
+idx: 6 event: Encode, trigger time = 0.420001
+idx: 7 event: Encode, trigger time = 0.479327
+idx: 8 event: Encode, trigger time = 0.503247
+idx: 9 event: Encode, trigger time = 0.516941
+idx: 10 event: Encode, trigger time = 0.537711
+idx: 11 event: Encode, trigger time = 0.589263
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.351640
+idx: 1 event: Encode, trigger time = 0.352782
+idx: 2 event: Store, trigger time = 0.362834
+idx: 3 event: Out, trigger time = 0.362834
+idx: 4 event: Store, trigger time = 0.376001
+idx: 5 event: Encode, trigger time = 0.420001
+idx: 6 event: Encode, trigger time = 0.479327
+idx: 7 event: Encode, trigger time = 0.503247
+idx: 8 event: Encode, trigger time = 0.516941
+idx: 9 event: Encode, trigger time = 0.537711
+idx: 10 event: Encode, trigger time = 0.589263
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.351640
+idx: 1 event: Bottom Arrival, trigger time = 0.351640
+idx: 2 event: Encode, trigger time = 0.352782
+idx: 3 event: Store, trigger time = 0.362834
+idx: 4 event: Out, trigger time = 0.362834
+idx: 5 event: Store, trigger time = 0.376001
+idx: 6 event: Encode, trigger time = 0.420001
+idx: 7 event: Encode, trigger time = 0.479327
+idx: 8 event: Encode, trigger time = 0.503247
+idx: 9 event: Encode, trigger time = 0.516941
+idx: 10 event: Encode, trigger time = 0.537711
+idx: 11 event: Encode, trigger time = 0.589263
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.351640
+idx: 1 event: Bottom Arrival, trigger time = 0.351640
+idx: 2 event: Encode, trigger time = 0.352782
+idx: 3 event: Store, trigger time = 0.362834
+idx: 4 event: Out, trigger time = 0.362834
+idx: 5 event: New Frame, trigger time = 0.364207
+idx: 6 event: Store, trigger time = 0.376001
+idx: 7 event: Encode, trigger time = 0.420001
+idx: 8 event: Encode, trigger time = 0.479327
+idx: 9 event: Encode, trigger time = 0.503247
+idx: 10 event: Encode, trigger time = 0.516941
+idx: 11 event: Encode, trigger time = 0.537711
+idx: 12 event: Encode, trigger time = 0.589263
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.352782
+idx: 1 event: Store, trigger time = 0.362834
+idx: 2 event: Out, trigger time = 0.362834
+idx: 3 event: New Frame, trigger time = 0.364207
+idx: 4 event: Store, trigger time = 0.376001
+idx: 5 event: Encode, trigger time = 0.420001
+idx: 6 event: Encode, trigger time = 0.479327
+idx: 7 event: Encode, trigger time = 0.503247
+idx: 8 event: Encode, trigger time = 0.516941
+idx: 9 event: Encode, trigger time = 0.537711
+idx: 10 event: Encode, trigger time = 0.589263
+idx: 11 event: Encode, trigger time = 0.596692
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Store, trigger time = 0.362834
+idx: 1 event: Out, trigger time = 0.362834
+idx: 2 event: New Frame, trigger time = 0.364207
+idx: 3 event: Store, trigger time = 0.376001
+idx: 4 event: Encode, trigger time = 0.420001
+idx: 5 event: Store, trigger time = 0.420001
+idx: 6 event: Encode, trigger time = 0.479327
+idx: 7 event: Encode, trigger time = 0.503247
+idx: 8 event: Encode, trigger time = 0.516941
+idx: 9 event: Encode, trigger time = 0.537711
+idx: 10 event: Encode, trigger time = 0.589263
+idx: 11 event: Encode, trigger time = 0.596692
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Out, trigger time = 0.362834
+idx: 1 event: New Frame, trigger time = 0.364207
+idx: 2 event: Store, trigger time = 0.376001
+idx: 3 event: Out, trigger time = 0.376001
+idx: 4 event: Encode, trigger time = 0.420001
+idx: 5 event: Store, trigger time = 0.420001
+idx: 6 event: Encode, trigger time = 0.479327
+idx: 7 event: Encode, trigger time = 0.503247
+idx: 8 event: Encode, trigger time = 0.516941
+idx: 9 event: Encode, trigger time = 0.537711
+idx: 10 event: Encode, trigger time = 0.589263
+idx: 11 event: Encode, trigger time = 0.596692
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.364207
+idx: 1 event: Store, trigger time = 0.376001
+idx: 2 event: Out, trigger time = 0.376001
+idx: 3 event: Encode, trigger time = 0.420001
+idx: 4 event: Store, trigger time = 0.420001
+idx: 5 event: Encode, trigger time = 0.479327
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.364207
+idx: 1 event: Bottom Arrival, trigger time = 0.364207
+idx: 2 event: Store, trigger time = 0.376001
+idx: 3 event: Out, trigger time = 0.376001
+idx: 4 event: Encode, trigger time = 0.420001
+idx: 5 event: Store, trigger time = 0.420001
+idx: 6 event: Encode, trigger time = 0.479327
+idx: 7 event: Encode, trigger time = 0.503247
+idx: 8 event: Encode, trigger time = 0.516941
+idx: 9 event: Encode, trigger time = 0.537711
+idx: 10 event: Encode, trigger time = 0.589263
+idx: 11 event: Encode, trigger time = 0.596692
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.364207
+idx: 1 event: Bottom Arrival, trigger time = 0.364207
+idx: 2 event: New Frame, trigger time = 0.374010
+idx: 3 event: Store, trigger time = 0.376001
+idx: 4 event: Out, trigger time = 0.376001
+idx: 5 event: Encode, trigger time = 0.420001
+idx: 6 event: Store, trigger time = 0.420001
+idx: 7 event: Encode, trigger time = 0.479327
+idx: 8 event: Encode, trigger time = 0.503247
+idx: 9 event: Encode, trigger time = 0.516941
+idx: 10 event: Encode, trigger time = 0.537711
+idx: 11 event: Encode, trigger time = 0.589263
+idx: 12 event: Encode, trigger time = 0.596692
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.374010
+idx: 1 event: Store, trigger time = 0.376001
+idx: 2 event: Out, trigger time = 0.376001
+idx: 3 event: Encode, trigger time = 0.420001
+idx: 4 event: Store, trigger time = 0.420001
+idx: 5 event: Encode, trigger time = 0.479327
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.374010
+idx: 1 event: Store, trigger time = 0.376001
+idx: 2 event: Out, trigger time = 0.376001
+idx: 3 event: Encode, trigger time = 0.420001
+idx: 4 event: Store, trigger time = 0.420001
+idx: 5 event: Encode, trigger time = 0.479327
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.374010
+idx: 1 event: Bottom Arrival, trigger time = 0.374010
+idx: 2 event: Store, trigger time = 0.376001
+idx: 3 event: Out, trigger time = 0.376001
+idx: 4 event: Encode, trigger time = 0.420001
+idx: 5 event: Store, trigger time = 0.420001
+idx: 6 event: Encode, trigger time = 0.479327
+idx: 7 event: Encode, trigger time = 0.503247
+idx: 8 event: Encode, trigger time = 0.516941
+idx: 9 event: Encode, trigger time = 0.537711
+idx: 10 event: Encode, trigger time = 0.589263
+idx: 11 event: Encode, trigger time = 0.596692
+idx: 12 event: Encode, trigger time = 0.639419
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.374010
+idx: 1 event: Bottom Arrival, trigger time = 0.374010
+idx: 2 event: Store, trigger time = 0.376001
+idx: 3 event: Out, trigger time = 0.376001
+idx: 4 event: New Frame, trigger time = 0.409771
+idx: 5 event: Encode, trigger time = 0.420001
+idx: 6 event: Store, trigger time = 0.420001
+idx: 7 event: Encode, trigger time = 0.479327
+idx: 8 event: Encode, trigger time = 0.503247
+idx: 9 event: Encode, trigger time = 0.516941
+idx: 10 event: Encode, trigger time = 0.537711
+idx: 11 event: Encode, trigger time = 0.589263
+idx: 12 event: Encode, trigger time = 0.596692
+idx: 13 event: Encode, trigger time = 0.639419
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Out, trigger time = 0.376001
+idx: 1 event: Out, trigger time = 0.403125
+idx: 2 event: New Frame, trigger time = 0.409771
+idx: 3 event: Encode, trigger time = 0.420001
+idx: 4 event: Store, trigger time = 0.420001
+idx: 5 event: Encode, trigger time = 0.479327
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.409771
+idx: 1 event: Encode, trigger time = 0.420001
+idx: 2 event: Store, trigger time = 0.420001
+idx: 3 event: Encode, trigger time = 0.479327
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.409771
+idx: 1 event: Bottom Arrival, trigger time = 0.409771
+idx: 2 event: Encode, trigger time = 0.420001
+idx: 3 event: Store, trigger time = 0.420001
+idx: 4 event: Encode, trigger time = 0.479327
+idx: 5 event: Encode, trigger time = 0.503247
+idx: 6 event: Encode, trigger time = 0.516941
+idx: 7 event: Encode, trigger time = 0.537711
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.409771
+idx: 1 event: Bottom Arrival, trigger time = 0.409771
+idx: 2 event: Encode, trigger time = 0.420001
+idx: 3 event: Store, trigger time = 0.420001
+idx: 4 event: New Frame, trigger time = 0.424707
+idx: 5 event: Encode, trigger time = 0.479327
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.420001
+idx: 1 event: Store, trigger time = 0.420001
+idx: 2 event: New Frame, trigger time = 0.424707
+idx: 3 event: Encode, trigger time = 0.479327
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Store, trigger time = 0.420001
+idx: 1 event: New Frame, trigger time = 0.424707
+idx: 2 event: Encode, trigger time = 0.479327
+idx: 3 event: Store, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.424707
+idx: 1 event: Encode, trigger time = 0.479327
+idx: 2 event: Store, trigger time = 0.486378
+idx: 3 event: Out, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.424707
+idx: 1 event: Encode, trigger time = 0.479327
+idx: 2 event: Store, trigger time = 0.486378
+idx: 3 event: Out, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.424707
+idx: 1 event: Bottom Arrival, trigger time = 0.424707
+idx: 2 event: Encode, trigger time = 0.479327
+idx: 3 event: Store, trigger time = 0.486378
+idx: 4 event: Out, trigger time = 0.486378
+idx: 5 event: Encode, trigger time = 0.503247
+idx: 6 event: Encode, trigger time = 0.516941
+idx: 7 event: Encode, trigger time = 0.537711
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+idx: 11 event: Encode, trigger time = 0.673744
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.424707
+idx: 1 event: Bottom Arrival, trigger time = 0.424707
+idx: 2 event: New Frame, trigger time = 0.426155
+idx: 3 event: Encode, trigger time = 0.479327
+idx: 4 event: Store, trigger time = 0.486378
+idx: 5 event: Out, trigger time = 0.486378
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+idx: 12 event: Encode, trigger time = 0.673744
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.426155
+idx: 1 event: Encode, trigger time = 0.479327
+idx: 2 event: Store, trigger time = 0.486378
+idx: 3 event: Out, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.426155
+idx: 1 event: Encode, trigger time = 0.479327
+idx: 2 event: Store, trigger time = 0.486378
+idx: 3 event: Out, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.426155
+idx: 1 event: Bottom Arrival, trigger time = 0.426155
+idx: 2 event: Encode, trigger time = 0.479327
+idx: 3 event: Store, trigger time = 0.486378
+idx: 4 event: Out, trigger time = 0.486378
+idx: 5 event: Encode, trigger time = 0.503247
+idx: 6 event: Encode, trigger time = 0.516941
+idx: 7 event: Encode, trigger time = 0.537711
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+idx: 11 event: Encode, trigger time = 0.673744
+idx: 12 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.426155
+idx: 1 event: Bottom Arrival, trigger time = 0.426155
+idx: 2 event: New Frame, trigger time = 0.426163
+idx: 3 event: Encode, trigger time = 0.479327
+idx: 4 event: Store, trigger time = 0.486378
+idx: 5 event: Out, trigger time = 0.486378
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+idx: 12 event: Encode, trigger time = 0.673744
+idx: 13 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.426163
+idx: 1 event: Encode, trigger time = 0.479327
+idx: 2 event: Store, trigger time = 0.486378
+idx: 3 event: Out, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.426163
+idx: 1 event: Bottom Arrival, trigger time = 0.426163
+idx: 2 event: Encode, trigger time = 0.479327
+idx: 3 event: Store, trigger time = 0.486378
+idx: 4 event: Out, trigger time = 0.486378
+idx: 5 event: Encode, trigger time = 0.503247
+idx: 6 event: Encode, trigger time = 0.516941
+idx: 7 event: Encode, trigger time = 0.537711
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+idx: 11 event: Encode, trigger time = 0.673744
+idx: 12 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.426163
+idx: 1 event: Bottom Arrival, trigger time = 0.426163
+idx: 2 event: New Frame, trigger time = 0.432367
+idx: 3 event: Encode, trigger time = 0.479327
+idx: 4 event: Store, trigger time = 0.486378
+idx: 5 event: Out, trigger time = 0.486378
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+idx: 12 event: Encode, trigger time = 0.673744
+idx: 13 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.432367
+idx: 1 event: Encode, trigger time = 0.479327
+idx: 2 event: Store, trigger time = 0.486378
+idx: 3 event: Out, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.432367
+idx: 1 event: Bottom Arrival, trigger time = 0.432367
+idx: 2 event: Encode, trigger time = 0.479327
+idx: 3 event: Store, trigger time = 0.486378
+idx: 4 event: Out, trigger time = 0.486378
+idx: 5 event: Encode, trigger time = 0.503247
+idx: 6 event: Encode, trigger time = 0.516941
+idx: 7 event: Encode, trigger time = 0.537711
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+idx: 11 event: Encode, trigger time = 0.673744
+idx: 12 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.432367
+idx: 1 event: Bottom Arrival, trigger time = 0.432367
+idx: 2 event: New Frame, trigger time = 0.439231
+idx: 3 event: Encode, trigger time = 0.479327
+idx: 4 event: Store, trigger time = 0.486378
+idx: 5 event: Out, trigger time = 0.486378
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+idx: 12 event: Encode, trigger time = 0.673744
+idx: 13 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.439231
+idx: 1 event: Encode, trigger time = 0.479327
+idx: 2 event: Store, trigger time = 0.486378
+idx: 3 event: Out, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.439231
+idx: 1 event: Bottom Arrival, trigger time = 0.439231
+idx: 2 event: Encode, trigger time = 0.479327
+idx: 3 event: Store, trigger time = 0.486378
+idx: 4 event: Out, trigger time = 0.486378
+idx: 5 event: Encode, trigger time = 0.503247
+idx: 6 event: Encode, trigger time = 0.516941
+idx: 7 event: Encode, trigger time = 0.537711
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+idx: 11 event: Encode, trigger time = 0.673744
+idx: 12 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.439231
+idx: 1 event: Bottom Arrival, trigger time = 0.439231
+idx: 2 event: New Frame, trigger time = 0.439484
+idx: 3 event: Encode, trigger time = 0.479327
+idx: 4 event: Store, trigger time = 0.486378
+idx: 5 event: Out, trigger time = 0.486378
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+idx: 12 event: Encode, trigger time = 0.673744
+idx: 13 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.439484
+idx: 1 event: Encode, trigger time = 0.479327
+idx: 2 event: Store, trigger time = 0.486378
+idx: 3 event: Out, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.439484
+idx: 1 event: Bottom Arrival, trigger time = 0.439484
+idx: 2 event: Encode, trigger time = 0.479327
+idx: 3 event: Store, trigger time = 0.486378
+idx: 4 event: Out, trigger time = 0.486378
+idx: 5 event: Encode, trigger time = 0.503247
+idx: 6 event: Encode, trigger time = 0.516941
+idx: 7 event: Encode, trigger time = 0.537711
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+idx: 11 event: Encode, trigger time = 0.673744
+idx: 12 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.439484
+idx: 1 event: Bottom Arrival, trigger time = 0.439484
+idx: 2 event: New Frame, trigger time = 0.442150
+idx: 3 event: Encode, trigger time = 0.479327
+idx: 4 event: Store, trigger time = 0.486378
+idx: 5 event: Out, trigger time = 0.486378
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+idx: 12 event: Encode, trigger time = 0.673744
+idx: 13 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.442150
+idx: 1 event: Encode, trigger time = 0.479327
+idx: 2 event: Store, trigger time = 0.486378
+idx: 3 event: Out, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.442150
+idx: 1 event: Bottom Arrival, trigger time = 0.442150
+idx: 2 event: Encode, trigger time = 0.479327
+idx: 3 event: Store, trigger time = 0.486378
+idx: 4 event: Out, trigger time = 0.486378
+idx: 5 event: Encode, trigger time = 0.503247
+idx: 6 event: Encode, trigger time = 0.516941
+idx: 7 event: Encode, trigger time = 0.537711
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+idx: 11 event: Encode, trigger time = 0.673744
+idx: 12 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.442150
+idx: 1 event: Bottom Arrival, trigger time = 0.442150
+idx: 2 event: New Frame, trigger time = 0.442628
+idx: 3 event: Encode, trigger time = 0.479327
+idx: 4 event: Store, trigger time = 0.486378
+idx: 5 event: Out, trigger time = 0.486378
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+idx: 12 event: Encode, trigger time = 0.673744
+idx: 13 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.442628
+idx: 1 event: Encode, trigger time = 0.479327
+idx: 2 event: Store, trigger time = 0.486378
+idx: 3 event: Out, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.442628
+idx: 1 event: Bottom Arrival, trigger time = 0.442628
+idx: 2 event: Encode, trigger time = 0.479327
+idx: 3 event: Store, trigger time = 0.486378
+idx: 4 event: Out, trigger time = 0.486378
+idx: 5 event: Encode, trigger time = 0.503247
+idx: 6 event: Encode, trigger time = 0.516941
+idx: 7 event: Encode, trigger time = 0.537711
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+idx: 11 event: Encode, trigger time = 0.673744
+idx: 12 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.442628
+idx: 1 event: Bottom Arrival, trigger time = 0.442628
+idx: 2 event: New Frame, trigger time = 0.448849
+idx: 3 event: Encode, trigger time = 0.479327
+idx: 4 event: Store, trigger time = 0.486378
+idx: 5 event: Out, trigger time = 0.486378
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+idx: 12 event: Encode, trigger time = 0.673744
+idx: 13 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.448849
+idx: 1 event: Encode, trigger time = 0.479327
+idx: 2 event: Store, trigger time = 0.486378
+idx: 3 event: Out, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.448849
+idx: 1 event: Bottom Arrival, trigger time = 0.448849
+idx: 2 event: Encode, trigger time = 0.479327
+idx: 3 event: Store, trigger time = 0.486378
+idx: 4 event: Out, trigger time = 0.486378
+idx: 5 event: Encode, trigger time = 0.503247
+idx: 6 event: Encode, trigger time = 0.516941
+idx: 7 event: Encode, trigger time = 0.537711
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+idx: 11 event: Encode, trigger time = 0.673744
+idx: 12 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.448849
+idx: 1 event: Bottom Arrival, trigger time = 0.448849
+idx: 2 event: New Frame, trigger time = 0.475123
+idx: 3 event: Encode, trigger time = 0.479327
+idx: 4 event: Store, trigger time = 0.486378
+idx: 5 event: Out, trigger time = 0.486378
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+idx: 12 event: Encode, trigger time = 0.673744
+idx: 13 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.475123
+idx: 1 event: Encode, trigger time = 0.479327
+idx: 2 event: Store, trigger time = 0.486378
+idx: 3 event: Out, trigger time = 0.486378
+idx: 4 event: Encode, trigger time = 0.503247
+idx: 5 event: Encode, trigger time = 0.516941
+idx: 6 event: Encode, trigger time = 0.537711
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.475123
+idx: 1 event: Bottom Arrival, trigger time = 0.475123
+idx: 2 event: Encode, trigger time = 0.479327
+idx: 3 event: Store, trigger time = 0.486378
+idx: 4 event: Out, trigger time = 0.486378
+idx: 5 event: Encode, trigger time = 0.503247
+idx: 6 event: Encode, trigger time = 0.516941
+idx: 7 event: Encode, trigger time = 0.537711
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+idx: 11 event: Encode, trigger time = 0.673744
+idx: 12 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.475123
+idx: 1 event: Bottom Arrival, trigger time = 0.475123
+idx: 2 event: Encode, trigger time = 0.479327
+idx: 3 event: Store, trigger time = 0.486378
+idx: 4 event: Out, trigger time = 0.486378
+idx: 5 event: New Frame, trigger time = 0.493680
+idx: 6 event: Encode, trigger time = 0.503247
+idx: 7 event: Encode, trigger time = 0.516941
+idx: 8 event: Encode, trigger time = 0.537711
+idx: 9 event: Encode, trigger time = 0.589263
+idx: 10 event: Encode, trigger time = 0.596692
+idx: 11 event: Encode, trigger time = 0.639419
+idx: 12 event: Encode, trigger time = 0.673744
+idx: 13 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Store, trigger time = 0.486378
+idx: 1 event: Out, trigger time = 0.486378
+idx: 2 event: New Frame, trigger time = 0.493680
+idx: 3 event: Encode, trigger time = 0.503247
+idx: 4 event: Encode, trigger time = 0.516941
+idx: 5 event: Encode, trigger time = 0.537711
+idx: 6 event: Store, trigger time = 0.544963
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Out, trigger time = 0.486378
+idx: 1 event: New Frame, trigger time = 0.493680
+idx: 2 event: Encode, trigger time = 0.503247
+idx: 3 event: Encode, trigger time = 0.516941
+idx: 4 event: Encode, trigger time = 0.537711
+idx: 5 event: Store, trigger time = 0.544963
+idx: 6 event: Out, trigger time = 0.544963
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.493680
+idx: 1 event: Encode, trigger time = 0.503247
+idx: 2 event: Encode, trigger time = 0.516941
+idx: 3 event: Encode, trigger time = 0.537711
+idx: 4 event: Store, trigger time = 0.544963
+idx: 5 event: Out, trigger time = 0.544963
+idx: 6 event: Encode, trigger time = 0.589263
+idx: 7 event: Encode, trigger time = 0.596692
+idx: 8 event: Encode, trigger time = 0.639419
+idx: 9 event: Encode, trigger time = 0.673744
+idx: 10 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.493680
+idx: 1 event: Bottom Arrival, trigger time = 0.493680
+idx: 2 event: Encode, trigger time = 0.503247
+idx: 3 event: Encode, trigger time = 0.516941
+idx: 4 event: Encode, trigger time = 0.537711
+idx: 5 event: Store, trigger time = 0.544963
+idx: 6 event: Out, trigger time = 0.544963
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.493680
+idx: 1 event: Bottom Arrival, trigger time = 0.493680
+idx: 2 event: New Frame, trigger time = 0.496897
+idx: 3 event: Encode, trigger time = 0.503247
+idx: 4 event: Encode, trigger time = 0.516941
+idx: 5 event: Encode, trigger time = 0.537711
+idx: 6 event: Store, trigger time = 0.544963
+idx: 7 event: Out, trigger time = 0.544963
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+idx: 11 event: Encode, trigger time = 0.673744
+idx: 12 event: Encode, trigger time = 0.697051
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: New Frame, trigger time = 0.496897
+idx: 1 event: Encode, trigger time = 0.503247
+idx: 2 event: Encode, trigger time = 0.516941
+idx: 3 event: Encode, trigger time = 0.537711
+idx: 4 event: Store, trigger time = 0.544963
+idx: 5 event: Out, trigger time = 0.544963
+idx: 6 event: Encode, trigger time = 0.589263
+idx: 7 event: Encode, trigger time = 0.596692
+idx: 8 event: Encode, trigger time = 0.639419
+idx: 9 event: Encode, trigger time = 0.673744
+idx: 10 event: Encode, trigger time = 0.697051
+idx: 11 event: Encode, trigger time = 0.698043
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.496897
+idx: 1 event: Encode, trigger time = 0.503247
+idx: 2 event: Encode, trigger time = 0.516941
+idx: 3 event: Encode, trigger time = 0.537711
+idx: 4 event: Store, trigger time = 0.544963
+idx: 5 event: Out, trigger time = 0.544963
+idx: 6 event: Encode, trigger time = 0.589263
+idx: 7 event: Encode, trigger time = 0.596692
+idx: 8 event: Encode, trigger time = 0.639419
+idx: 9 event: Encode, trigger time = 0.673744
+idx: 10 event: Encode, trigger time = 0.697051
+idx: 11 event: Encode, trigger time = 0.698043
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.496897
+idx: 1 event: Bottom Arrival, trigger time = 0.496897
+idx: 2 event: Encode, trigger time = 0.503247
+idx: 3 event: Encode, trigger time = 0.516941
+idx: 4 event: Encode, trigger time = 0.537711
+idx: 5 event: Store, trigger time = 0.544963
+idx: 6 event: Out, trigger time = 0.544963
+idx: 7 event: Encode, trigger time = 0.589263
+idx: 8 event: Encode, trigger time = 0.596692
+idx: 9 event: Encode, trigger time = 0.639419
+idx: 10 event: Encode, trigger time = 0.673744
+idx: 11 event: Encode, trigger time = 0.697051
+idx: 12 event: Encode, trigger time = 0.698043
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Top Arrival, trigger time = 0.496897
+idx: 1 event: Bottom Arrival, trigger time = 0.496897
+idx: 2 event: Encode, trigger time = 0.503247
+idx: 3 event: Encode, trigger time = 0.516941
+idx: 4 event: New Frame, trigger time = 0.520683
+idx: 5 event: Encode, trigger time = 0.537711
+idx: 6 event: Store, trigger time = 0.544963
+idx: 7 event: Out, trigger time = 0.544963
+idx: 8 event: Encode, trigger time = 0.589263
+idx: 9 event: Encode, trigger time = 0.596692
+idx: 10 event: Encode, trigger time = 0.639419
+idx: 11 event: Encode, trigger time = 0.673744
+idx: 12 event: Encode, trigger time = 0.697051
+idx: 13 event: Encode, trigger time = 0.698043
+--------------------------------------
+----------event queue-----------------
+idx: 0 event: Encode, trigger time = 0.516941
+idx: 1 event: New Frame, trigger time = 0.520683
+idx: 2 event: Encode, trigger time = 0.537711
+idx: 3 event: Store, trigger time = 0.544963
+idx: 4 event: Out, trigger time = 0.544963
+idx: 5 event: Store, trigger time = 0.568584
+idx: 6 event: Encode, trigger time = 0.589263
+idx: 7 event: Encode, trigger time = 0.596692
+idx: 8 event: Encode, trigger time = 0.639419
+idx: 9 event: Encode, trigger time = 0.673744
+idx: 10 event: Encode, trigger time = 0.697051
+idx: 11 event: Encode, trigger time = 0.698043
+--------------------------------------
+simluation timeoutsimulation endsimulation finished
+total frames : 72
+lost frames : 24
+current_time : 0.503247
+storage_busy_time : 0.388917
+f = 0.33333, u = 0.77281
