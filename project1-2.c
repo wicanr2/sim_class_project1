@@ -650,40 +650,40 @@ int start_simulation(int beta, float tau, float eta, float stop_time) {
 int simulation1() {
     // tau = 1/59.94 , eta = 262.5
     //beta 20
-    srand(0);
+    srand48(2048219);
     start_simulation(20,1.0/59.94, 262.5, 8.0f* 3600.0f);
     //beta 40
-    srand(0);
+    srand48(2048219);
     start_simulation(40,1.0/59.94, 262.5, 8.0f* 3600.0f);
     //beta 60
-    srand(0);
+    srand48(2048219);
     start_simulation(60,1.0/59.94, 262.5, 8.0f* 3600.0f);
     //beta 80
-    srand(0);
+    srand48(2048219);
     start_simulation(80,1.0/59.94, 262.5, 8.0f* 3600.0f);
     //beta 100
-    srand(0);
+    srand48(2048219);
     start_simulation(100,1.0/59.94, 262.5, 8.0f* 3600.0f);
 }
 int simulation2() {
     //beta 20
-    srand(0);
+    srand48(2048219);
     start_simulation(20,1.0/50.0, 312.5, 8.0f* 3600.0f);
     //beta 40
-    srand(0);
+    srand48(2048219);
     start_simulation(40,1.0/50.0, 312.5, 8.0f* 3600.0f);
     //beta 60
-    srand(0);
+    srand48(2048219);
     start_simulation(60,1.0/50.0, 312.5, 8.0f* 3600.0f);
     //beta 80
-    srand(0);
+    srand48(2048219);
     start_simulation(80,1.0/50.0, 312.5, 8.0f* 3600.0f);
     //beta 100
-    srand(0);
+    srand48(2048219);
     start_simulation(100,1.0/50.0, 312.5, 8.0f* 3600.0f);
 }
 int simulation_test() {
-    srand(0);
+    srand48(2048219);
     start_simulation(20,1.0/59.94, 262.5, 5*60);
 }
 // main function
