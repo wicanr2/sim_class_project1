@@ -30,6 +30,7 @@ float expon(float mean) {
 #define TOP_FIELD 1
 #define BOTTOM_FIELD 2
 #define ENCODED_FIELD 3
+#define OUT_FIELD 4
 
 // video field structure
 typedef struct _video_field_t {
@@ -112,7 +113,6 @@ typedef struct _encoder_t {
     //the processing capacity of the encoder 
     int c_enc; 
     field_buf_t buf;
-    video_field_t *curr_field;
 }encoder_t;
 
 typedef struct _storage_t {
@@ -121,7 +121,6 @@ typedef struct _storage_t {
     // the storage always has a sufficient buffer space to 
     // store an arrivaing field
     field_buf_t buf;
-    video_field_t *curr_field;
 }storage_t;
 
 void init_encoder(encoder_t *e, int c_enc, int caps) {
@@ -170,6 +169,7 @@ typedef struct _sim_state_t {
 
     encoder_t encoder; // encoder buffer
     storage_t storage; // storage buffer
+    field_buf_t out_buf;
 } sim_state_t;
 
 // insert field
@@ -374,7 +374,6 @@ int print_event_queue( event_queue_t *q ) {
 //-----------------------------------------------------
 // event method declaration
 int schedule_new_frame(sim_state_t *sim_state, event_queue_t *q);
-int process_encode(sim_state_t *sim_state, event_queue_t *q);
 int schedule_encode(sim_state_t *sim_state, event_queue_t *q);
 int schedule_store(sim_state_t *sim_state, event_queue_t *q);
 int schedule_out(sim_state_t *sim_state, event_queue_t *q);
@@ -437,8 +436,6 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
                 }
                 break;
             case ENCODE:
-                //processing encode
-                process_encode( sim_state, q );
                 schedule_store( sim_state, q );
                 break;
             case STORE:
@@ -447,9 +444,11 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
                 schedule_out( sim_state, q);
                 break;
             case OUT:
-                sim_state->storage_busy_time += 
-                    sim_state->last_storage_process_time;
+                video_field_t *out_field = 
+                    get_next_field(&sim_state->out_buf); 
+                sim_state->storage_busy_time += out_field->fobs;
                 dec_field_num(&sim_state->storage.buf);
+                dec_field_num(&sim_state->out_buf);
                 break;
             default:
                 printf("unknow event");
@@ -477,10 +476,11 @@ int schedule_encode(sim_state_t *sim_state, event_queue_t *q) {
     //printf("schedule_encode\n");
    
     //schedule encode time
-    if ( sim_state->last_encode_finished_time <= 0.0 ) {
-        insert_event( q, ENCODE, sim_state->current_time );
-    } else {
+    if ( sim_state->last_encode_finished_time > sim_state->current_time ) {
         insert_event( q, ENCODE, sim_state->last_encode_finished_time );
+    } else {
+        insert_event( q, ENCODE, sim_state->current_time );
+        sim_state->last_encode_finished_time = sim_state->current_time;
     }
     //predict the encoded finished time, and update the last_encoded_finished_time
     video_field_t *top = sim_state->last_top; 
@@ -493,16 +493,13 @@ int schedule_encode(sim_state_t *sim_state, event_queue_t *q) {
     float encode_size = frame_size * sim_state->alpha;
     float process_time = frame_size / sim_state->encoder.c_enc;
     float ttime = 0.0f;
-    if ( sim_state->last_encode_finished_time <= 0.0 ) {
-        ttime = process_time + sim_state->current_time;
-    } else {
-        ttime = process_time + sim_state->last_encode_finished_time;
-    }
+    ttime = process_time + sim_state->last_encode_finished_time;
     sim_state->last_encode_finished_time = ttime;
     return 0;
 }
 
-int process_encode(sim_state_t *sim_state, event_queue_t *q) {
+// schedule_store, process encode
+int schedule_store(sim_state_t *sim_state, event_queue_t *q) {
     // process encoding
     video_field_t *top = get_next_field(&sim_state->encoder.buf); 
     video_field_t *bottom = get_next_field(&sim_state->encoder.buf); 
@@ -521,35 +518,22 @@ int process_encode(sim_state_t *sim_state, event_queue_t *q) {
     float encode_size = frame_size * sim_state->alpha;
     float process_time = frame_size / sim_state->encoder.c_enc;
     float ttime = 0.0f; //tirgger time
-    float scheduled_time = 0.0f; 
     ttime = process_time + sim_state->current_time;
 
-    // schedule store trigger time
-    if ( sim_state->last_storage_finished_time <= 0.0 ) {
-        scheduled_time = ttime;
+    if ( sim_state->last_storage_finished_time > ttime ) {
+        insert_event( q, STORE, sim_state->last_storage_finished_time );
     } else {
-        scheduled_time = sim_state->last_storage_finished_time;
-        if ( ttime > sim_state->last_storage_finished_time ) {
-            scheduled_time = ttime;
-            sim_state->last_storage_finished_time = ttime; //adjust base
-        } 
-    }
-    insert_event( q, STORE, scheduled_time );
+        insert_event( q, STORE, ttime );
+        sim_state->last_storage_finished_time = ttime; 
+    } 
+
     insert_field( sim_state, &sim_state->storage.buf, ENCODED_FIELD , encode_size );
     free(top); free(bottom);
-    return 0;
-}
 
-// schedule_store, process encode
-int schedule_store(sim_state_t *sim_state, event_queue_t *q) {
     // predict the store finished time
     video_field_t *encode_field = sim_state->last_encoded;
     float store_process_time = encode_field->fobs / sim_state->storage.c_storage;
-    if ( sim_state->last_storage_finished_time <= 0.0 ) {
-        sim_state->last_storage_finished_time = sim_state->current_time;
-    } else {
-        sim_state->last_storage_finished_time += store_process_time;
-    }
+    sim_state->last_storage_finished_time += store_process_time;
     return 0;
 }
 int schedule_out(sim_state_t *sim_state, event_queue_t *q) {
@@ -561,8 +545,8 @@ int schedule_out(sim_state_t *sim_state, event_queue_t *q) {
     }
     float frame_size = encode_field->fobs;
     float process_time = frame_size / sim_state->storage.c_storage;
-    sim_state->last_storage_process_time = process_time;
     float ttime = process_time + sim_state->current_time; 
+    insert_field( sim_state, &sim_state->out_buf, OUT_FIELD , process_time );
     insert_event( q, OUT, ttime );
     free(encode_field); 
 }
@@ -585,6 +569,7 @@ int sim_initial(
     sim_state->alpha = alpha;
     init_encoder( &sim_state->encoder, c_enc, sim_state->encoder_capacity_beta );
     init_storage( &sim_state->storage, c_storage , sim_state->storage_capacity );
+    init_buffer( &sim_state->out_buf, -1 );
     // the first field will be top field, arrives at time 0
     insert_event( q, NEW_FRAME , 0.0f);
     return 0;
