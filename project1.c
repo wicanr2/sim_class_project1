@@ -212,6 +212,34 @@ typedef enum event_t {
     STORE,
     OUT
 }event_t ;
+
+static char* event_to_str(event_t type) {
+    switch(type) {
+        case NEW_FRAME:
+            return "New Frame";
+            break;
+        case TOP_ARRIVAL:
+            return "Top Arrival";
+            break;
+        case BOTTOM_ARRIVAL:
+            return "Bottom Arrival";
+            break;
+        case ENCODE:
+            return "Encode";
+            break;
+        case STORE:
+            return "Store";
+            break;
+        case OUT:
+            return "Out";
+            break;
+        default:
+            return "Unknown";
+            break;
+    }
+    return "Unknown";
+}
+
 /*
  *    Initial 
  *       |
@@ -329,7 +357,7 @@ int print_event_queue( event_queue_t *q ) {
     event_element_t *tmp = q->head;
     printf("----------event queue-----------------\n");
     while ( tmp != 0 ) {
-        printf("%d event->e = %d, event->ttime = %f\n", tmp, tmp->e, tmp->ttime );
+        printf("idx: %d event: %s, trigger time = %f\n", tmp, event_to_str(tmp->e), tmp->ttime );
         tmp = tmp->next;
     }
     printf("--------------------------------------\n");

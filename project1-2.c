@@ -213,6 +213,33 @@ typedef enum event_t {
     STORE,
     OUT
 }event_t ;
+
+static char* event_to_str(event_t type) {
+    switch(type) {
+        case NEW_FRAME:
+            return "New Frame";
+            break;
+        case TOP_ARRIVAL:
+            return "Top Arrival";
+            break;
+        case BOTTOM_ARRIVAL:
+            return "Bottom Arrival";
+            break;
+        case ENCODE:
+            return "Encode";
+            break;
+        case STORE:
+            return "Store";
+            break;
+        case OUT:
+            return "Out";
+            break;
+        default:
+            return "Unknown";
+            break;
+    }
+    return "Unknown";
+}
 /*
  *    Initial 
  *       |
@@ -274,7 +301,8 @@ void init_event_queue(event_queue_t *q) {
 }
 int print_event_queue( event_queue_t *q );
 // insert event
-#define PRINT_EVENT_QUEUE 1
+//
+static int print_event_queue_flag = 0;
 void insert_event(event_queue_t *q, event_t e, float ttime) {
     //printf("insert event %d, ttime %f\n", e, ttime );
     event_element_t *tmp = 0;
@@ -291,9 +319,8 @@ void insert_event(event_queue_t *q, event_t e, float ttime) {
     if ( p == 0 ) {
         q->head = tmp;
         q->last = tmp;
-#if PRINT_EVENT_QUEUE 
-        print_event_queue(q);
-#endif
+        if ( print_event_queue_flag ) 
+            print_event_queue(q);
         return ;
     }
     while ( p != 0 ) { 
@@ -307,9 +334,8 @@ void insert_event(event_queue_t *q, event_t e, float ttime) {
     if ( p == 0 ) {
         prev->next = tmp;
         q->last = tmp;
-#if PRINT_EVENT_QUEUE 
-        print_event_queue(q);
-#endif
+        if ( print_event_queue_flag ) 
+            print_event_queue(q);
         return;
     }
     if ( p == q->head ) {
@@ -319,9 +345,8 @@ void insert_event(event_queue_t *q, event_t e, float ttime) {
         tmp->next = p;
         prev->next = tmp;
     }
-#if PRINT_EVENT_QUEUE 
-    print_event_queue(q);
-#endif
+    if ( print_event_queue_flag ) 
+        print_event_queue(q);
 }
 // get next event
 event_element_t *get_next_event( event_queue_t *q ) {
@@ -337,7 +362,7 @@ int print_event_queue( event_queue_t *q ) {
     event_element_t *tmp = q->head;
     printf("----------event queue-----------------\n");
     while ( tmp != 0 ) {
-        printf("%d event->e = %d, event->ttime = %f\n", tmp, tmp->e, tmp->ttime );
+        printf("idx: %d event: %s, trigger time = %f\n", tmp, event_to_str(tmp->e), tmp->ttime );
         tmp = tmp->next;
     }
     printf("--------------------------------------\n");
@@ -668,7 +693,13 @@ int main(int argc, char* argv) {
     //start_simulation(80000,1.0/59.94, 262.5);
     /*
     */
-    simulation_test();
+    if ( argc >= 2 ) { 
+        print_event_queue_flag = 1;
+        simulation_test();
+    } else {
+        simulation1();
+        simulation2();
+    }
     return 0;
 }
 //-----------------------------------------------------
