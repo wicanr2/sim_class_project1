@@ -1,0 +1,201 @@
+Tandem Queue Simulation
+simulation parameter
+simulation:
+	stop_time : 28800.000000
+encoder:
+	c_enc(encoder process rate) = 15800
+	beta (encoder buffer length)  = 20
+storage:
+	c_storage(storage processing rate) = 1600
+	storage buffer length  = -1
+field:
+	field inter-arrival time = 0.016683
+	field complexity = 262.500000
+	alpha = 0.100000
+do simulation.......
+simluation timeoutsimulation endsimulation finished
+total frames : 3452522
+lost frames : 1721274
+current_time : 28800.033203
+storage_busy_time : 28404.666016
+f = 0.49856, u = 0.98627
+simulation parameter
+simulation:
+	stop_time : 28800.000000
+encoder:
+	c_enc(encoder process rate) = 15800
+	beta (encoder buffer length)  = 40
+storage:
+	c_storage(storage processing rate) = 1600
+	storage buffer length  = -1
+field:
+	field inter-arrival time = 0.016683
+	field complexity = 262.500000
+	alpha = 0.100000
+do simulation.......
+simluation timeoutsimulation endsimulation finished
+total frames : 3454148
+lost frames : 1722470
+current_time : 28800.001953
+storage_busy_time : 28439.917969
+f = 0.49867, u = 0.98750
+simulation parameter
+simulation:
+	stop_time : 28800.000000
+encoder:
+	c_enc(encoder process rate) = 15800
+	beta (encoder buffer length)  = 60
+storage:
+	c_storage(storage processing rate) = 1600
+	storage buffer length  = -1
+field:
+	field inter-arrival time = 0.016683
+	field complexity = 262.500000
+	alpha = 0.100000
+do simulation.......
+simluation timeoutsimulation endsimulation finished
+total frames : 3451286
+lost frames : 1717156
+current_time : 28800.005859
+storage_busy_time : 28440.154297
+f = 0.49754, u = 0.98751
+simulation parameter
+simulation:
+	stop_time : 28800.000000
+encoder:
+	c_enc(encoder process rate) = 15800
+	beta (encoder buffer length)  = 80
+storage:
+	c_storage(storage processing rate) = 1600
+	storage buffer length  = -1
+field:
+	field inter-arrival time = 0.016683
+	field complexity = 262.500000
+	alpha = 0.100000
+do simulation.......
+simluation timeoutsimulation endsimulation finished
+total frames : 3454706
+lost frames : 1722796
+current_time : 28800.001953
+storage_busy_time : 28439.837891
+f = 0.49868, u = 0.98749
+simulation parameter
+simulation:
+	stop_time : 28800.000000
+encoder:
+	c_enc(encoder process rate) = 15800
+	beta (encoder buffer length)  = 100
+storage:
+	c_storage(storage processing rate) = 1600
+	storage buffer length  = -1
+field:
+	field inter-arrival time = 0.016683
+	field complexity = 262.500000
+	alpha = 0.100000
+do simulation.......
+simluation timeoutsimulation endsimulation finished
+total frames : 3449514
+lost frames : 1715434
+current_time : 28800.019531
+storage_busy_time : 28438.722656
+f = 0.49730, u = 0.98745
+simulation parameter
+simulation:
+	stop_time : 28800.000000
+encoder:
+	c_enc(encoder process rate) = 15800
+	beta (encoder buffer length)  = 20
+storage:
+	c_storage(storage processing rate) = 1600
+	storage buffer length  = -1
+field:
+	field inter-arrival time = 0.020000
+	field complexity = 312.500000
+	alpha = 0.100000
+do simulation.......
+simluation timeoutsimulation endsimulation finished
+total frames : 2878090
+lost frames : 1423228
+current_time : 28800.003906
+storage_busy_time : 28401.376953
+f = 0.49450, u = 0.98616
+simulation parameter
+simulation:
+	stop_time : 28800.000000
+encoder:
+	c_enc(encoder process rate) = 15800
+	beta (encoder buffer length)  = 40
+storage:
+	c_storage(storage processing rate) = 1600
+	storage buffer length  = -1
+field:
+	field inter-arrival time = 0.020000
+	field complexity = 312.500000
+	alpha = 0.100000
+do simulation.......
+simluation timeoutsimulation endsimulation finished
+total frames : 2880646
+lost frames : 1424712
+current_time : 28800.011719
+storage_busy_time : 28438.734375
+f = 0.49458, u = 0.98746
+simulation parameter
+simulation:
+	stop_time : 28800.000000
+encoder:
+	c_enc(encoder process rate) = 15800
+	beta (encoder buffer length)  = 60
+storage:
+	c_storage(storage processing rate) = 1600
+	storage buffer length  = -1
+field:
+	field inter-arrival time = 0.020000
+	field complexity = 312.500000
+	alpha = 0.100000
+do simulation.......
+simluation timeoutsimulation endsimulation finished
+total frames : 2882138
+lost frames : 1427324
+current_time : 28800.003906
+storage_busy_time : 28439.966797
+f = 0.49523, u = 0.98750
+simulation parameter
+simulation:
+	stop_time : 28800.000000
+encoder:
+	c_enc(encoder process rate) = 15800
+	beta (encoder buffer length)  = 80
+storage:
+	c_storage(storage processing rate) = 1600
+	storage buffer length  = -1
+field:
+	field inter-arrival time = 0.020000
+	field complexity = 312.500000
+	alpha = 0.100000
+do simulation.......
+simluation timeoutsimulation endsimulation finished
+total frames : 2882758
+lost frames : 1426074
+current_time : 28800.001953
+storage_busy_time : 28439.628906
+f = 0.49469, u = 0.98749
+simulation parameter
+simulation:
+	stop_time : 28800.000000
+encoder:
+	c_enc(encoder process rate) = 15800
+	beta (encoder buffer length)  = 100
+storage:
+	c_storage(storage processing rate) = 1600
+	storage buffer length  = -1
+field:
+	field inter-arrival time = 0.020000
+	field complexity = 312.500000
+	alpha = 0.100000
+do simulation.......
+simluation timeoutsimulation endsimulation finished
+total frames : 2876666
+lost frames : 1418866
+current_time : 28800.001953
+storage_busy_time : 28439.876953
+f = 0.49323, u = 0.98750
