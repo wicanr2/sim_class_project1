@@ -17,7 +17,7 @@
 #include <math.h>
 #include "lcgrand.h"
 
-void lcg_rest();
+void lcg_reset();
 
 //-----------------------------------------------------
 /* Exponential variate generation function. */
@@ -615,19 +615,19 @@ int main(int argc, char* argv) {
     printf("Tandem Queue Simulation\n");
     // tau = 1/59.94 , eta = 262.5
     //beta 20
-    lcg_rest();
+    lcg_reset();
     start_simulation(20,1.0/59.94, 262.5);
     //beta 40
-    lcg_rest();
+    lcg_reset();
     start_simulation(40,1.0/59.94, 262.5);
     //beta 60
-    lcg_rest();
+    lcg_reset();
     start_simulation(60,1.0/59.94, 262.5);
     //beta 80
-    lcg_rest();
+    lcg_reset();
     start_simulation(80,1.0/59.94, 262.5);
     //beta 100
-    lcg_rest();
+    lcg_reset();
     start_simulation(100,1.0/59.94, 262.5);
     // tau = 1/50 , eta = 312.5
     //start_simulation(80000,1.0/59.94, 262.5);

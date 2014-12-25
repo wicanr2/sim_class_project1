@@ -17,15 +17,14 @@
 #include <math.h>
 #include "lcgrand.h"
 
-void lcg_rest();
 
 //-----------------------------------------------------
 /* Exponential variate generation function. */
 float expon(float mean) {
     /* Return an exponential random variate with mean "mean". */
-    return -mean * log(lcgrand(1));
-    //double x = drand48();
-    //return -mean * log(x);
+    //return -mean * log(lcgrand(1));
+    double x = drand48();
+    return -mean * log(x);
 }
 //-----------------------------------------------------
 #define TOP_FIELD 1
@@ -113,6 +112,7 @@ typedef struct _encoder_t {
     //the processing capacity of the encoder 
     int c_enc; 
     field_buf_t buf;
+    video_field_t *curr_field;
 }encoder_t;
 
 typedef struct _storage_t {
@@ -121,6 +121,7 @@ typedef struct _storage_t {
     // the storage always has a sufficient buffer space to 
     // store an arrivaing field
     field_buf_t buf;
+    video_field_t *curr_field;
 }storage_t;
 
 void init_encoder(encoder_t *e, int c_enc, int caps) {
@@ -273,6 +274,7 @@ void init_event_queue(event_queue_t *q) {
 }
 int print_event_queue( event_queue_t *q );
 // insert event
+#define PRINT_EVENT_QUEUE 1
 void insert_event(event_queue_t *q, event_t e, float ttime) {
     //printf("insert event %d, ttime %f\n", e, ttime );
     event_element_t *tmp = 0;
@@ -289,7 +291,9 @@ void insert_event(event_queue_t *q, event_t e, float ttime) {
     if ( p == 0 ) {
         q->head = tmp;
         q->last = tmp;
-        //print_event_queue(q);
+#if PRINT_EVENT_QUEUE 
+        print_event_queue(q);
+#endif
         return ;
     }
     while ( p != 0 ) { 
@@ -303,7 +307,9 @@ void insert_event(event_queue_t *q, event_t e, float ttime) {
     if ( p == 0 ) {
         prev->next = tmp;
         q->last = tmp;
-        //print_event_queue(q);
+#if PRINT_EVENT_QUEUE 
+        print_event_queue(q);
+#endif
         return;
     }
     if ( p == q->head ) {
@@ -313,7 +319,9 @@ void insert_event(event_queue_t *q, event_t e, float ttime) {
         tmp->next = p;
         prev->next = tmp;
     }
-    //print_event_queue(q);
+#if PRINT_EVENT_QUEUE 
+    print_event_queue(q);
+#endif
 }
 // get next event
 event_element_t *get_next_event( event_queue_t *q ) {
@@ -339,6 +347,7 @@ int print_event_queue( event_queue_t *q ) {
 //-----------------------------------------------------
 // event method declaration
 int schedule_new_frame(sim_state_t *sim_state, event_queue_t *q);
+int process_encode(sim_state_t *sim_state, event_queue_t *q);
 int schedule_encode(sim_state_t *sim_state, event_queue_t *q);
 int schedule_store(sim_state_t *sim_state, event_queue_t *q);
 int schedule_out(sim_state_t *sim_state, event_queue_t *q);
@@ -371,37 +380,38 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
                 insert_event(q, TOP_ARRIVAL, event->ttime );
                 insert_event(q, BOTTOM_ARRIVAL, event->ttime );
                 //printf("total frame= %d\n", sim_state->total_frames);
+                sim_state->total_frames+=2;
                 schedule_new_frame(sim_state, q);
                 break;
             case TOP_ARRIVAL:
                 //printf("TOP_ARRIVAL\n");
                 fobs = expon(sim_state->field_complexity_mean);
                 r = insert_field ( sim_state, &sim_state->encoder.buf, TOP_FIELD, fobs);
-                sim_state->total_frames++;
                 if ( r < 0 ) {
                     // discard bottom arrival event
                     event_element_t *next_event = 
                         get_next_event(q);;
                     free(next_event);
-                    sim_state->lost_frames++;
+                    sim_state->lost_frames+=2;
                     //printf("lost_frame1 = %d\n", sim_state->lost_frames);
-                }
+                } 
                 break;
             case BOTTOM_ARRIVAL:
                 //printf("BOTTOM_ARRIVAL\n");
                 fobs = expon(sim_state->field_complexity_mean);
                 r = insert_field ( sim_state, &sim_state->encoder.buf, BOTTOM_FIELD, fobs);
-                sim_state->total_frames++;
                 if ( r < 0 ) {
                     // remove last top field from buffer 
                     drop_last( &sim_state->encoder.buf );
-                    sim_state->lost_frames++;
+                    sim_state->lost_frames+=2;
                     //printf("lost_frame2 = %d\n", sim_state->lost_frames);
                 } else {
                     schedule_encode( sim_state, q );
                 }
                 break;
             case ENCODE:
+                //processing encode
+                process_encode( sim_state, q );
                 schedule_store( sim_state, q );
                 break;
             case STORE:
@@ -412,6 +422,7 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
             case OUT:
                 sim_state->storage_busy_time += 
                     sim_state->last_storage_process_time;
+                dec_field_num(&sim_state->storage.buf);
                 break;
             default:
                 printf("unknow event");
@@ -464,9 +475,7 @@ int schedule_encode(sim_state_t *sim_state, event_queue_t *q) {
     return 0;
 }
 
-// schedule_store, process encode
-int schedule_store(sim_state_t *sim_state, event_queue_t *q) {
-    
+int process_encode(sim_state_t *sim_state, event_queue_t *q) {
     // process encoding
     video_field_t *top = get_next_field(&sim_state->encoder.buf); 
     video_field_t *bottom = get_next_field(&sim_state->encoder.buf); 
@@ -484,7 +493,7 @@ int schedule_store(sim_state_t *sim_state, event_queue_t *q) {
     float frame_size = top->fobs + bottom->fobs;
     float encode_size = frame_size * sim_state->alpha;
     float process_time = frame_size / sim_state->encoder.c_enc;
-    float ttime = 0.0f;
+    float ttime = 0.0f; //tirgger time
     float scheduled_time = 0.0f; 
     ttime = process_time + sim_state->current_time;
 
@@ -501,7 +510,11 @@ int schedule_store(sim_state_t *sim_state, event_queue_t *q) {
     insert_event( q, STORE, scheduled_time );
     insert_field( sim_state, &sim_state->storage.buf, ENCODED_FIELD , encode_size );
     free(top); free(bottom);
+    return 0;
+}
 
+// schedule_store, process encode
+int schedule_store(sim_state_t *sim_state, event_queue_t *q) {
     // predict the store finished time
     video_field_t *encode_field = sim_state->last_encoded;
     float store_process_time = encode_field->fobs / sim_state->storage.c_storage;
@@ -595,10 +608,10 @@ sim_state_t     g_sim_state;
 event_queue_t   g_event_queue;
 
 //-----------------------------------------------------
-int start_simulation(int beta, float tau, float eta) {
+int start_simulation(int beta, float tau, float eta, float stop_time) {
     sim_initial(&g_sim_state, &g_event_queue, 
             beta, -1, 15800, 1600, tau, eta,
-            8*3600, 0.1 );
+            stop_time, 0.1 );
     param_report( &g_sim_state );
     printf("do simulation.......\n");
     do_simulation( &g_sim_state, &g_event_queue );
@@ -609,40 +622,53 @@ int start_simulation(int beta, float tau, float eta) {
     clean_event_queue(&g_event_queue);
     return 0;
 } 
-// main function
-int main(int argc, char* argv) {
-    srand(time(NULL));
-    printf("Tandem Queue Simulation\n");
+int simulation1() {
     // tau = 1/59.94 , eta = 262.5
     //beta 20
-    lcg_rest();
-    start_simulation(20,1.0/59.94, 262.5);
+    srand(0);
+    start_simulation(20,1.0/59.94, 262.5, 8.0f* 3600.0f);
     //beta 40
-    lcg_rest();
-    start_simulation(40,1.0/59.94, 262.5);
+    srand(0);
+    start_simulation(40,1.0/59.94, 262.5, 8.0f* 3600.0f);
     //beta 60
-    lcg_rest();
-    start_simulation(60,1.0/59.94, 262.5);
+    srand(0);
+    start_simulation(60,1.0/59.94, 262.5, 8.0f* 3600.0f);
     //beta 80
-    lcg_rest();
-    start_simulation(80,1.0/59.94, 262.5);
+    srand(0);
+    start_simulation(80,1.0/59.94, 262.5, 8.0f* 3600.0f);
     //beta 100
-    lcg_rest();
-    start_simulation(100,1.0/59.94, 262.5);
+    srand(0);
+    start_simulation(100,1.0/59.94, 262.5, 8.0f* 3600.0f);
+}
+int simulation2() {
+    //beta 20
+    srand(0);
+    start_simulation(20,1.0/50.0, 312.5, 8.0f* 3600.0f);
+    //beta 40
+    srand(0);
+    start_simulation(40,1.0/50.0, 312.5, 8.0f* 3600.0f);
+    //beta 60
+    srand(0);
+    start_simulation(60,1.0/50.0, 312.5, 8.0f* 3600.0f);
+    //beta 80
+    srand(0);
+    start_simulation(80,1.0/50.0, 312.5, 8.0f* 3600.0f);
+    //beta 100
+    srand(0);
+    start_simulation(100,1.0/50.0, 312.5, 8.0f* 3600.0f);
+}
+int simulation_test() {
+    srand(0);
+    start_simulation(20,1.0/59.94, 262.5, 5*60);
+}
+// main function
+int main(int argc, char* argv) {
+    printf("Tandem Queue Simulation\n");
     // tau = 1/50 , eta = 312.5
     //start_simulation(80000,1.0/59.94, 262.5);
     /*
-    //beta 20
-    start_simulation(20,1.0/50.0, 312.5);
-    //beta 40
-    start_simulation(40,1.0/50.0, 312.5);
-    //beta 60
-    start_simulation(60,1.0/50.0, 312.5);
-    //beta 80
-    start_simulation(80,1.0/50.0, 312.5);
-    //beta 100
-    start_simulation(100,1.0/50.0, 312.5);
     */
+    simulation_test();
     return 0;
 }
 //-----------------------------------------------------

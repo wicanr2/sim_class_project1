@@ -74,7 +74,7 @@ static long zrng_org[] =
 
 
 /* Generate the next random number. */
-void lcg_rest() {
+void lcg_reset() {
     memcpy(zrng, zrng_org, (sizeof(zrng_org)/sizeof(zrng_org[0]))*sizeof(long));
 }
 
