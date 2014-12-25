@@ -444,11 +444,13 @@ void event_scheduler(sim_state_t *sim_state, event_queue_t *q ) {
                 schedule_out( sim_state, q);
                 break;
             case OUT:
+		{
                 video_field_t *out_field = 
                     get_next_field(&sim_state->out_buf); 
                 sim_state->storage_busy_time += out_field->fobs;
                 dec_field_num(&sim_state->storage.buf);
                 dec_field_num(&sim_state->out_buf);
+		}
                 break;
             default:
                 printf("unknow event");
